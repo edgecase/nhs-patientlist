@@ -1,6 +1,13 @@
 class PatientListsController < ApplicationController
+  def select_ward
+    @wards = ActiveRecord::Base.connection.exec_query("select distinct currward from adms").map{|w| w["currward"]}
+  end
+
   def current
-    @patients = Admission.admitted.map do |admission|
+    ward = params[:ward]
+    @patients = Admission.admitted.select do |admission|
+      ward.nil? or admission.currward == ward
+    end.map do |admission|
       patient = admission.patient
       {
         :ward      => admission.currward,
