@@ -147,7 +147,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  blueprint-rails
+  blueprint-rails (~> 0.1.2)
   coffee-rails (~> 3.2.1)
   devise (= 2.0.4)
   ecrails_templates!
