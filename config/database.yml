@@ -6,7 +6,7 @@ development:
   password:
   socket: /tmp/mysql.sock
 
-development:
+test:
   adapter: mysql
   encoding: utf8
   database: nhs-patientlist-test
