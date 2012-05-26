@@ -17,7 +17,7 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'blueprint-rails'
+  gem 'blueprint-rails', '~> 0.1.2'
 end
 
 gem 'jquery-rails'
