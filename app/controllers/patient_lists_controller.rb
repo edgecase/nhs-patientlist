@@ -4,11 +4,11 @@ class PatientListsController < ApplicationController
   end
 
   def current
-    ward = params[:ward]
-    admissions = if ward.nil?
+    @ward = params[:ward]
+    admissions = if @ward.nil?
       Admission.admitted
     else
-      Admission.admitted.where(:currward => ward)
+      Admission.admitted.where(:currward => @ward)
     end
     @patients = admissions.map do |admission|
       patient = admission.patient
