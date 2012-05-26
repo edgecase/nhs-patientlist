@@ -3,10 +3,6 @@
 <p>This page lets you generate a patient list for a ward.
 Please select a ward from the list below or <%= link_to "click here", current_patient_lists_path %> to get all patients.</p>
 
-<%= form_tag current_patient_lists_path, :method=>'get' do %>
-  <%= select_tag "ward", options_for_select(@wards)%>
-  <%= submit_tag "Get Patients" %>
-<% end %>
-
+<%= render 'select_ward' %>
 
 

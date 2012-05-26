@@ -1,7 +1,8 @@
+<%= render 'select_ward' %>
 <h2>Current Patient List</h2>
 
-<% if @ward %>
-  <p>Patients in ward: <%= @ward %></p>
+<% if ward %>
+  <p>Patients in ward: <%= ward %></p>
 <% end %>
 
 <table>
@@ -14,15 +15,15 @@
     <th>pmh</th>
     <th>allergies</th>
   </tr>
-  <% @patients.each do |patient| %>
+  <% patients.each do |patient| %>
     <tr>
-      <th><%= patient[:ward] %></td>
-      <th><%= patient[:hospno] %></td>
-      <th><%= patient[:name] %></td>
-      <th><%= patient[:birthdate] %></td>
-      <th><%= patient[:sex ] %></td>
-      <th><%= patient[:pmh] %></td>
-      <th><%= patient[:allergies] %></td>
+      <td><%= patient.ward %></td>
+      <td><%= patient.hospno %></td>
+      <td><%= patient.name %></td>
+      <td><%= patient.birthdate %></td>
+      <td><%= patient.sex %></td>
+      <td><%= patient.pmh %></td>
+      <td><%= patient.allergies %></td>
     </tr>
   <% end %>
 </table>
