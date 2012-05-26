@@ -19,6 +19,13 @@ role :app, deploy_server                    # App server (unicorn)
 role :db,  deploy_server, :primary => true  # db server  (postgres)
 
 before "deploy:assets:precompile", "symlink_config_files"
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
 
 task :symlink_config_files, :roles => :app do
   run "cd #{release_path}/config && rm -f database.yml && ln -s #{shared_path}/config/database.yml"
