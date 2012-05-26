@@ -1,6 +1,6 @@
 <%= form_tag current_patient_lists_path, :method=>'get' do %>
   <%= select_tag "ward", options_for_select(@wards)%>
-  <%= submit_tag %>
+  <%= submit_tag "Get Patients" %>
 <% end %>
 
 

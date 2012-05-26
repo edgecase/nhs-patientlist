@@ -1,7 +1,4 @@
 NhsPatientlist::Application.routes.draw do
-
-  match "/patient_lists/current" => "patient_lists#current"
-
   resources :patient_lists do
     collection do
       get 'current'
@@ -9,5 +6,5 @@ NhsPatientlist::Application.routes.draw do
     end
   end
 
-
+  root :to => "patient_lists#select_ward"
 end
