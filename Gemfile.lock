@@ -66,6 +66,7 @@ GEM
       thor (~> 0.14)
     json (1.7.3)
     libv8 (3.3.10.4)
+    machinist (2.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -152,6 +153,7 @@ DEPENDENCIES
   devise (= 2.0.4)
   ecrails_templates!
   jquery-rails
+  machinist (~> 2.0)
   mysql
   rails (= 3.2.3)
   rspec-rails (= 2.9.0)
