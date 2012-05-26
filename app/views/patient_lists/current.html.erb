@@ -2,7 +2,9 @@
 <h2>Current Patient List</h2>
 
 <% if ward %>
-  <p>Patients in ward: <%= ward %></p>
+  <h2><%= ward %> Patients</h2>
+<% else %>
+  <h2>All Patients</h2>
 <% end %>
 
 <table>
