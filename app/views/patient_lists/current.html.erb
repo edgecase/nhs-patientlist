@@ -1,0 +1,26 @@
+<h1>Current Patient List</h1>
+
+<table>
+  <tr>
+    <th>ward</th>
+    <th>hospno</th>
+    <th>name</th>
+    <th>birthdate</th>
+    <th>sex </th>
+    <th>pmh</th>
+    <th>allergies</th>
+  </tr>
+  <% @patients.each do |patient| %>
+    <tr>
+      <th><%= patient[:ward] %></td>
+      <th><%= patient[:hospno] %></td>
+      <th><%= patient[:name] %></td>
+      <th><%= patient[:birthdate] %></td>
+      <th><%= patient[:sex ] %></td>
+      <th><%= patient[:pmh] %></td>
+      <th><%= patient[:allergies] %></td>
+    </tr>
+  <% end %>
+</table>
+
+
