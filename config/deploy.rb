@@ -18,9 +18,10 @@ role :web, deploy_server                    # Web server (Nginx)
 role :app, deploy_server                    # App server (unicorn)
 role :db,  deploy_server, :primary => true  # db server  (postgres)
 
+before "deploy:assets:precompile", "symlink_config_files"
+
 task :symlink_config_files, :roles => :app do
   run "cd #{release_path}/config && rm -f database.yml && ln -s #{shared_path}/config/database.yml"
-  run "cd #{release_path}/config && rm -f unicorn.rb   && ln -s #{shared_path}/config/unicorn.rb"
 end
 after 'deploy:update_code', 'symlink_config_files'
 
