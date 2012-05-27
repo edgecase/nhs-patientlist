@@ -25,8 +25,6 @@ class PatientDetail
     "#{firstnames} #{lastname}"
   end
 
-
-
   def pending
     "something"
   end

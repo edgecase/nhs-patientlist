@@ -7,6 +7,9 @@ NhsPatientlist::Application.routes.draw do
   end
 
   resources :patients, :only=>[:edit, :update] do
+    member do
+      get 'history'
+    end
     resources :to_do_items do
       member do
         post 'add_event'
