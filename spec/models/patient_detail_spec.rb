@@ -1,6 +1,6 @@
 require 'spec_helper' 
 describe PatientDetail do
-  let(:patient){Patient.make(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts")}
+  let(:patient){Patient.make(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123)}
   let(:admission){Admission.make(:currward=>'RENAL', :patient=>patient)}
   let(:patient_detail){PatientDetail.new(admission)}
   it "proxies the admission and patient models" do
@@ -8,7 +8,9 @@ describe PatientDetail do
     patient_detail.name.should == "Rita O'Really"
     patient_detail.pmh.should == "Grouts"
     patient_detail.allergies.should == "toes"
+    patient_detail.patient_id.should == 123
   end
+
 
   describe :selecting do
     before do
