@@ -1,7 +1,7 @@
 class PatientDetail
   extend Forwardable
   def_delegator :@admission, :currward
-  def_delegators :@patient, :hospno, :name, :birthdate, :sex, :pmh, :allergies, :firstnames, :lastname, :pastmedhx, :pat_id
+  def_delegators :@patient, :hospno, :name, :birthdate, :sex, :pmh, :allergies, :firstnames, :lastname, :pastmedhx, :pat_id, :pendings, :to_dos
 
   alias :ward :currward
   alias :pmh :pastmedhx
