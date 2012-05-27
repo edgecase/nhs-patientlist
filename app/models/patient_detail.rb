@@ -23,4 +23,14 @@ class PatientDetail
   def name
     "#{firstnames} #{lastname}"
   end
+
+
+
+  def pending
+    "something"
+  end
+
+  def todo
+    "something else"
+  end
 end
