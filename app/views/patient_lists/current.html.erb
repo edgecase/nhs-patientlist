@@ -8,26 +8,28 @@
 <% end %>
 
 <table>
-  <tr>
-    <th>ward</th>
-    <th>hospno</th>
-    <th>name</th>
-    <th>birthdate</th>
-    <th>sex </th>
-    <th>pmh</th>
-    <th>allergies</th>
-  </tr>
-  <% patients.each do |patient| %>
-    <tr>
-      <td><%= patient.ward %></td>
-      <td><%= patient.hospno %></td>
-      <td><%= patient.name %></td>
-      <td><%= patient.birthdate %></td>
-      <td><%= patient.sex %></td>
-      <td><%= patient.pmh %></td>
-      <td><%= patient.allergies %></td>
-    </tr>
-  <% end %>
+    <thead>
+      <th>ward</th>
+      <th>hospno</th>
+      <th>name</th>
+      <th>birthdate</th>
+      <th>sex </th>
+      <th>pmh</th>
+      <th>allergies</th>
+    </thead>
+  <tbody>
+    <% patients.each do |patient| %>
+      <tr>
+        <td><%= patient.ward %></td>
+        <td><%= patient.hospno %></td>
+        <td><%= patient.name %></td>
+        <td><%= patient.birthdate %></td>
+        <td><%= patient.sex %></td>
+        <td><%= patient.pmh %></td>
+        <td><%= patient.allergies %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 
