@@ -9,6 +9,7 @@
 
 <table>
     <thead>
+      <th>risk level</th>
       <th>ward</th>
       <th>details</th>
       <th>pmh</th>
@@ -18,7 +19,8 @@
     </thead>
   <tbody>
     <% patients.each do |patient| %>
-      <tr>
+      <tr class='patient_detail'>
+        <td class='risk-level'><%= select_tag "risk_level", options_for_select(["low","medium","high"], :selected=>"low") %></td>
         <td><%= patient.ward %></td>
         <td class="details">
           <p>Name: <%= patient.name %> (<%= patient.sex %>)</p>
