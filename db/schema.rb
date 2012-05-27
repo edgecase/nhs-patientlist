@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120527082507) do
 
   create_table "adms", :primary_key => "adm_id", :force => true do |t|
     t.timestamp "admstamp",                                             :null => false
@@ -142,6 +142,13 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "pats", ["lastname"], :name => "lastname"
   add_index "pats", ["nhsno"], :name => "nhsno"
   add_index "pats", ["patmrsastatus"], :name => "patmrsastatus"
+
+  create_table "to_do_items", :force => true do |t|
+    t.integer  "patient_id"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "wards", :primary_key => "ward_id", :force => true do |t|
     t.string   "wardcode",      :limit => 20,                     :null => false

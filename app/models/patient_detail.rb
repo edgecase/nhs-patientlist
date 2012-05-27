@@ -8,7 +8,6 @@ class PatientDetail
 
   attr_reader :patient, :admission
 
-
   def self.admitted
     Admission.admitted.map{|a| PatientDetail.new(a)}
   end
@@ -21,9 +20,7 @@ class PatientDetail
     @patient = admission.patient
   end
 
-
   def name
     "#{firstnames} #{lastname}"
   end
-
 end
