@@ -6,7 +6,7 @@
   <% else %>
     <h2>All Patients</h2>
   <% end %>
-  <%= link_to "Download as CSV (for import to Excel)", current_patient_lists_path(:ward=>ward, :format=>'csv') %>
+  <%= link_to "Download as CSV (for import to Excel)", current_patient_lists_path(:ward=>ward, :format=>'csv'), :class=>'download' %>
 </header>
 
 <table>
