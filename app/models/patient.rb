@@ -13,4 +13,7 @@ class Patient < ActiveRecord::Base
     to_do_items.select{|item| "pending" == item.state}
   end
 
+  def name
+    "#{firstnames} #{lastname}"
+  end
 end

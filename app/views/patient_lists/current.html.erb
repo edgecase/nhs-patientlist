@@ -18,6 +18,7 @@
       <th>allergies</th>
       <th>pending</th>
       <th>todo</th>
+      <th>actions</th>
     </thead>
   <tbody>
     <% patients.each do |patient| %>
@@ -33,6 +34,7 @@
         <td><%= patient.allergies %></td>
         <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.pendings), edit_patient_path(patient.patient_id, :ward=>ward) %></td>
         <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.to_dos), edit_patient_path(patient.patient_id, :ward=>ward) %></td>
+        <td><%= link_to "history", history_patient_path(patient.patient_id, :ward=>ward) %></td>
       </tr>
     <% end %>
   </tbody>

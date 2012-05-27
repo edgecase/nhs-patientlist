@@ -1,0 +1,32 @@
+<header>
+  <h2>Patient History: <%= patient.name %></h2>
+  <%= link_to back_link_text, current_patient_lists_path(:ward=>ward) %>
+</header>
+
+<h3>Patient Details</h3>
+<div class='details'>
+  <p>Name: <%= patient.name %> (<%= patient.sex %>)</p>
+  <p>Hospital num: <%= patient.hospno %></p>
+  <p>DOB: <%= patient.birthdate %></p>
+</div>
+<br/>
+
+<h3>History</h3>
+<table>
+  <tr>
+    <th style='width : 15em'>Time</th>
+    <th>TODO List Item</th>
+    <th>Status</th>
+  </tr>
+  <% patient.to_do_items.each do |to_do_item| %>
+    <% to_do_item.to_do_item_events.each do |item_event| %>
+      <tr>
+        <td><%= item_event.created_at %></td>
+        <td><%= to_do_item.description %></td>
+        <td><%= item_event.event_name %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+
