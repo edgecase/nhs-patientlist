@@ -13,20 +13,22 @@
 
 <h3>History</h3>
 <table>
-  <tr>
-    <th style='width : 15em'>Time</th>
-    <th>TODO List Item</th>
-    <th>Status</th>
-  </tr>
-  <% patient.to_do_items.each do |to_do_item| %>
-    <% to_do_item.to_do_item_events.each do |item_event| %>
-      <tr>
-        <td><%= item_event.created_at %></td>
-        <td><%= to_do_item.description %></td>
-        <td><%= item_event.event_name %></td>
-      </tr>
+    <thead>
+      <th style='width : 15em'>Time</th>
+      <th>TODO List Item</th>
+      <th>Status</th>
+    </thead>
+  <tbody>
+    <% patient.to_do_items.each do |to_do_item| %>
+      <% to_do_item.to_do_item_events.each do |item_event| %>
+        <tr>
+          <td><%= item_event.created_at %></td>
+          <td><%= to_do_item.description %></td>
+          <td><%= item_event.event_name %></td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
+  </tbody>
 </table>
 
 
