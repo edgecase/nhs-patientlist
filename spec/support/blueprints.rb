@@ -10,3 +10,9 @@ Admission.blueprint do
   admstamp {Time.gm(2012, 07, 13, 23, 5)}
 end
 
+ToDoItem.blueprint do
+end
+
+ToDoItemEvent.blueprint do
+end
+
