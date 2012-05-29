@@ -26,7 +26,7 @@
       <tr class='patient_detail'>
         <td class='risk-level'><%= select_tag "risk_level", options_for_select(["low","medium","high"], :selected=>"low") %></td>
         <td><%= patient.ward %></td>
-        <td><%= patient.admconsultcode %></td>
+        <td><%= patient.consultant_name %></td>
         <td class="details">
           <p>Name: <%= patient.name %> (<%= patient.sex %>)</p>
           <p>Hospital num: <%= patient.hospno %></p>

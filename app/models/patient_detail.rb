@@ -25,6 +25,14 @@ class PatientDetail
     "#{firstnames} #{lastname}"
   end
 
+  def consultant_name
+    if @admission.consultant
+      @admission.consultant.consultname
+    else
+      @admission.admconsultcode
+    end
+  end
+
   def pending
     "something"
   end
