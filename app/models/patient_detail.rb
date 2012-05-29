@@ -1,7 +1,8 @@
 class PatientDetail
   extend Forwardable
+
   def_delegators :@admission, :currward, :admconsultcode
-  def_delegators :@patient, :hospno, :name, :birthdate, :sex, :pmh, :allergies, :firstnames, :lastname, :pastmedhx, :pat_id, :pendings, :to_dos
+  def_delegators :@patient, :hospno, :name, :birthdate, :sex, :pmh, :allergies, :firstnames, :lastname, :pastmedhx, :pat_id, :pendings, :to_dos, :risk_level, :risk_level=
 
   alias :ward :currward
   alias :pmh :pastmedhx
@@ -19,6 +20,10 @@ class PatientDetail
   def initialize(admission)
     @admission = admission
     @patient = admission.patient
+
+    if @patient.risk_level_events.empty?
+      @patient.risk_level = "low"
+    end
   end
 
   def name
@@ -31,13 +36,5 @@ class PatientDetail
     else
       @admission.admconsultcode
     end
-  end
-
-  def pending
-    "something"
-  end
-
-  def todo
-    "something else"
   end
 end
