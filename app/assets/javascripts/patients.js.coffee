@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ($) ->
+  $wardForm = $('#ward_form')
+  if $wardForm.length > 0
+    $wardForm.find('input[type]=submit').hide()
+    $wardForm.change ->
+      $(@).submit() unless $('select', @).val() is '--'
