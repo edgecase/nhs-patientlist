@@ -24,7 +24,12 @@
   <tbody>
     <% patients.each do |patient| %>
       <tr class='patient_detail'>
-        <td class='risk-level'><%= select_tag "risk_level", options_for_select(["low","medium","high"], :selected=>"low") %></td>
+        <td class='risk-level'>
+          <%= form_tag(update_risk_level_patient_path(patient.patient_id), :method => "put") do %>
+            <%= select_tag "risk_level", options_for_select(["low","medium","high"], :selected=>patient.risk_level) %>
+            <%= submit_tag "Save Risk Level" %>
+          <% end %>
+        </td>
         <td><%= patient.ward %></td>
         <td><%= patient.consultant_name %></td>
         <td class="details">
