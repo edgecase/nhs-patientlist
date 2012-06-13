@@ -55,4 +55,5 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'guard-spork'
   gem 'spork'
+  gem 'pry-rails'
 end
