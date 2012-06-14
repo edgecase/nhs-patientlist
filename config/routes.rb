@@ -9,7 +9,7 @@ NhsPatientlist::Application.routes.draw do
   resources :patients, :only=>[:edit, :update] do
     member do
       get 'history'
-      put 'update_risk_level'
+      post 'update_risk_level'
     end
     resources :to_do_items do
       member do
