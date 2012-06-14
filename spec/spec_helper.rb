@@ -69,6 +69,9 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
+  # Allow testing to use devise authentication
+  config.include Devise::TestHelpers, :type => :controller
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -91,3 +94,12 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+# login helper for request specs
+def login(user)
+  visit new_user_session_path
+  fill_in 'Email', :with => user.email
+  fill_in 'Password', :with => user.password
+  click_button 'Sign in'
+end
+

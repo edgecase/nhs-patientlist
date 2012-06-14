@@ -17,3 +17,8 @@ end
 ToDoItemEvent.blueprint do
 end
 
+User.blueprint do
+  email { "test2@example.com" }
+  password { "password" }
+end
+
