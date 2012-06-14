@@ -1,4 +1,6 @@
 NhsPatientlist::Application.routes.draw do
+  devise_for :users
+
   resources :patient_lists, :only=>[] do
     collection do
       get 'current'
