@@ -1,7 +1,7 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: dummydata
+  database: nhs-patientlist-dev
   username: root
   password:
   socket: /tmp/mysql.sock
