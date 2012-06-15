@@ -10,8 +10,12 @@ describe ToDoItem do
   end
 
   describe "events" do
-    it "is created in 'todo' state" do
+    it "is created in 'todo' state by default" do
       item.reload.state.should == 'todo'
+    end
+    it "can be created in the 'pending' state" do
+      pending_item = patient.to_do_items.create(:description=>'Check blood pressure', :to_do_state => 'pending')
+      pending_item.reload.state.should == 'pending'
     end
 
     it "changes state when a new event occurs" do

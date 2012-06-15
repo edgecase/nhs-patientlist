@@ -1,9 +1,10 @@
 class ToDoItem < ActiveRecord::Base
-  attr_accessible :description, :patient_id
+  attr_accessor :to_do_state
+  attr_accessible :description, :patient_id, :to_do_state
   has_many :to_do_item_events, :order=>"id ASC"
 
   before_create do
-    to_do_item_events.build(:event_name=>'todo')
+    to_do_item_events.build(:event_name => @to_do_state)
   end
 
   def state
