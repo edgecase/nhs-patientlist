@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe "Patients list" do
   let(:user) {User.make!}
-  
-  describe "Patients list reacts to 'ward' change", :js => true do
-    let(:patient){Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123)}
-    let(:admission){Admission.make!(:currward=>'RENAL', :patient=>patient)}
+  let(:patient){Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123)}
+  let(:admission){Admission.make!(:currward=>'RENAL', :admstatus => "Admitted", :patient=>patient)}
 
-    before do
-      patient.save
-      admission.save
-      login(user)
-      visit current_patient_lists_path
-    end
+  before do
+    patient.save
+    admission.save
+    login(user)
+  end
+
+  describe "Patients list reacts to 'ward' change", :js => true do
+    before { visit current_patient_lists_path }
 
     it "changes the ward when a new one is selected" do
       select('RENAL', from: 'ward')
@@ -31,20 +31,12 @@ describe "Patients list" do
   end
 
   describe "A patient's risk level is persisted to the database", :js => true do
-    let(:patient){Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123)}
-    let(:admission){Admission.make!(:currward=>'RENAL', :admstatus => "Admitted", :patient=>patient)}
-
-    before do
-      patient.save
-      admission.save
-      login(user)
-    end
 
     it "should have a patient with a risk level" do
       visit current_patient_lists_path
       page.should have_select('risk_level')
     end
-    
+
     it "should persist the risk level when changed" do
       visit current_patient_lists_path
       select('high', from: 'risk_level')
