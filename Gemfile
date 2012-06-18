@@ -47,6 +47,7 @@ group :development, :test do
   gem "ecrails_templates", :git => "git@github.com:edgecase/ecrails_templates.git"
   gem "rspec-rails", "2.9.0"
   gem 'capybara'
+  gem 'poltergeist'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'thin'

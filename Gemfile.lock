@@ -80,6 +80,8 @@ GEM
     eventmachine (0.12.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faye-websocket (0.4.5)
+      eventmachine (>= 0.12.0)
     ffi (1.0.11)
     guard (1.1.1)
       listen (>= 0.4.2)
@@ -93,6 +95,7 @@ GEM
       spork (>= 0.8.4)
     highline (1.6.12)
     hike (1.2.1)
+    http_parser.rb (0.5.3)
     i18n (0.6.0)
     journey (1.0.3)
     jquery-rails (2.0.2)
@@ -126,6 +129,12 @@ GEM
       net-ssh (>= 1.99.1)
     nokogiri (1.5.4)
     orm_adapter (0.0.7)
+    poltergeist (0.6.0)
+      capybara (~> 1.0)
+      childprocess (~> 0.3)
+      faye-websocket (~> 0.4, >= 0.4.4)
+      http_parser.rb (~> 0.5.3)
+      multi_json (~> 1.0)
     polyglot (0.3.3)
     pry (0.9.9.6)
       coderay (~> 1.0.5)
@@ -236,6 +245,7 @@ DEPENDENCIES
   launchy
   machinist (~> 2.0)
   mysql
+  poltergeist
   pry-rails
   rails (= 3.2.3)
   rb-fsevent
