@@ -54,6 +54,7 @@ group :development, :test do
   gem 'machinist', '~>2.0'
 
   gem 'guard'
+  gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'guard-livereload'
   gem 'guard-spork'

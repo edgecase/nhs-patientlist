@@ -90,6 +90,8 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 1.1.0)
       multi_json (~> 1.0)
+    guard-rspec (1.1.0)
+      guard (>= 1.1)
     guard-spork (1.0.0)
       guard (>= 1.0.0)
       spork (>= 0.8.4)
@@ -240,6 +242,7 @@ DEPENDENCIES
   ecrails_templates!
   guard
   guard-livereload
+  guard-rspec
   guard-spork
   jquery-rails
   launchy
