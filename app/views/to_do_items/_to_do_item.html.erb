@@ -1,7 +1,9 @@
 <li>
 <%= to_do_item.description %>
 <%= form_tag add_event_patient_to_do_item_path(patient, to_do_item) do %>
-  <%= hidden_field_tag 'event', next_event %>
-  <%= submit_tag "Done!" %>
+  <% if item_state == 'todo' %>
+    <%= submit_tag "Pending" %>
+  <% end %>
+  <%= submit_tag "Done" %>
 <% end %>
 </li>

@@ -11,7 +11,7 @@
   <% end %>
   <h2>To do</h2>
   <ul id="todo" class="todo-list">
-    <%= render patient.to_dos, :next_event=>'pending' %>
+    <%= render patient.to_dos, :item_state =>'todo' %>
   </ul>
 
 </div>
@@ -19,7 +19,7 @@
 <div id="pending-section">
   <h2>Pending</h2>
   <ul id="pending" class="todo-list">
-    <%= render patient.pendings, :next_event=>'done' %>
+    <%= render patient.pendings, :item_state =>'pending' %>
   </ul>
 
 </div>
