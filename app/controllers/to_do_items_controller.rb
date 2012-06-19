@@ -6,7 +6,7 @@ class ToDoItemsController < ApplicationController
 
   def add_event
     next_event = params[:commit] == 'Pending' ? 'pending' : 'done'
-    to_do_item.make_event(next_event)
+    to_do_item.make_event(next_event, current_user)
     redirect_to edit_patient_path(patient)
   end
 

@@ -8,6 +8,10 @@ describe ToDoItem do
     new_item = patient.to_do_items.create!(:description=>"5mg of pentaflourowhatsit, stat")
     patient.to_do_items.first.should == new_item
   end
+  it "is linked to the user that created it" do
+    new_item = patient.to_do_items.create!(:description=>"administer antibiotics", :owner=> current_user)
+    new_item.to_do_item_events.first.user.should == current_user
+  end
 
   describe "events" do
     it "is created in 'todo' state by default" do
@@ -18,8 +22,8 @@ describe ToDoItem do
       pending_item.reload.state.should == 'pending'
     end
 
-    it "changes state when a new event occurs" do
-      item.make_event 'pending'
+    it "change state when a new event occurs" do
+      item.make_event('pending', current_user)
       item.reload.state.should == 'pending'
     end
   end

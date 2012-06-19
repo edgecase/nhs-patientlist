@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :to_do_item_events
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

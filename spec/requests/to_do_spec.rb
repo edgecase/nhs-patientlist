@@ -29,7 +29,7 @@ describe "Todos", :js => true do
   end
   describe "existing Todos" do
     before do
-      todo = patient.to_do_items.create(:description=>'starts as todo')
+      todo = patient.to_do_items.create(:description=>'starts as todo', :owner => user)
       visit edit_patient_path(patient.id)
     end
 
@@ -41,13 +41,15 @@ describe "Todos", :js => true do
       find("#pending").should have_content('starts as todo')
     end
     it "can be marked as done" do
-      save_and_open_page
       within("#todo li") do
         page.should have_content('starts as todo')
         click_button "Done"
       end
       page.should have_no_content('starts as todo')
     end
-
+    it "leave a paper trail" do
+      visit history_patient_path(patient.id)
+      find("table").should have_content('@example.com')
+    end
   end
 end

@@ -8,7 +8,7 @@ describe Patient do
       3.times do |i| 
         patient.to_do_items.create(:description=>"Do #{i}")
       end
-      last_item.make_event("pending")
+      last_item.make_event("pending", current_user)
     end
 
     it "displays items in state todo" do

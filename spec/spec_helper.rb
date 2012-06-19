@@ -72,3 +72,7 @@ def login(user)
   click_button 'Sign in'
 end
 
+# current_user helper for model specs
+def current_user
+  User.first || User.make!
+end

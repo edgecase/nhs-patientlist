@@ -15,6 +15,7 @@
 <table>
     <thead>
       <th style='width : 15em'>Time</th>
+      <th>Updated by</th>
       <th>TODO List Item</th>
       <th>Status</th>
     </thead>
@@ -23,6 +24,7 @@
       <% to_do_item.to_do_item_events.each do |item_event| %>
         <tr>
           <td><%= item_event.created_at %></td>
+          <td><%= item_event.user.try(:email) %></td>
           <td><%= to_do_item.description %></td>
           <td><%= item_event.event_name %></td>
         </tr>
