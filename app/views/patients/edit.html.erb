@@ -6,7 +6,7 @@
 <div id="todo-section">
   <%= simple_form_for :to_do_item, :url=>patient_to_do_items_path(patient.id) do |f| %>
     <%= f.input :description %>
-    <%= f.select :to_do_state, [["To do", "todo"], %w{Pending pending}] %>
+    <%= f.select :status, [["To do", "todo"], %w{Pending pending}] %>
     <%= f.submit :value => "Add" %>
   <% end %>
   <h2>To do</h2>

@@ -1,6 +1,6 @@
 <li>
 <%= to_do_item.description %>
-<%= form_tag add_event_patient_to_do_item_path(patient, to_do_item) do %>
+<%= form_tag patient_to_do_item_path(patient, to_do_item), method: :put do %>
   <% if item_state == 'todo' %>
     <%= submit_tag "Pending" %>
   <% end %>

@@ -15,7 +15,7 @@ NhsPatientlist::Application.routes.draw do
     end
     resources :to_do_items do
       member do
-        post 'add_event'
+        put 'update'
       end
     end
   end
