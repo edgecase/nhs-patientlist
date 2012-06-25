@@ -5,10 +5,10 @@ describe Patient do
   describe :todos do
     let(:last_item){patient.to_do_items.find_by_description("Do 2")}
     before do
-      3.times do |i| 
+      3.times do |i|
         patient.to_do_items.create(:description=>"Do #{i}")
       end
-      last_item.make_event("pending", current_user)
+      last_item.update_attribute :status, 'pending'
     end
 
     it "displays items in state todo" do

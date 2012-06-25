@@ -17,16 +17,18 @@
       <th style='width : 15em'>Time</th>
       <th>Updated by</th>
       <th>TODO List Item</th>
+      <th>Action</th>
       <th>Status</th>
     </thead>
   <tbody>
     <% patient.to_do_items.each do |to_do_item| %>
-      <% to_do_item.to_do_item_events.each do |item_event| %>
+      <% to_do_item.audits.each do |item_audit| %>
         <tr>
-          <td><%= item_event.created_at %></td>
-          <td><%= item_event.user.try(:email) %></td>
+          <td><%= item_audit.created_at %></td>
+          <td><%= item_audit.user.try(:email) %></td>
           <td><%= to_do_item.description %></td>
-          <td><%= item_event.event_name %></td>
+          <td><%= item_audit.action %></td>
+          <td><%= item_audit.audited_changes['status'].to_s %></td>
         </tr>
       <% end %>
     <% end %>
