@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622152100) do
+ActiveRecord::Schema.define(:version => 20120626153540) do
 
   create_table "adms", :primary_key => "adm_id", :force => true do |t|
     t.timestamp "admstamp",                                             :null => false
@@ -169,14 +169,6 @@ ActiveRecord::Schema.define(:version => 20120622152100) do
     t.string   "risk_level"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "to_do_item_events", :force => true do |t|
-    t.integer  "to_do_item_id"
-    t.string   "event_name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "user_id"
   end
 
   create_table "to_do_items", :force => true do |t|
