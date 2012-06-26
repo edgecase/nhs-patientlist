@@ -21,7 +21,7 @@ describe "Todos", :js => true do
     end
     it "can be created as 'pending'" do
       fill_in 'Description', :with => 'Check bp'
-      select("Pending", from: "to_do_item_to_do_state")
+      select("Pending", from: "to_do_item_status")
       click_button "Add"
       find("#pending").should have_content('Check bp')
     end
@@ -29,7 +29,7 @@ describe "Todos", :js => true do
   end
   describe "existing Todos" do
     before do
-      todo = patient.to_do_items.create(:description=>'starts as todo', :owner => user)
+      todo = patient.to_do_items.create(:description=>'starts as todo')
       visit edit_patient_path(patient.id)
     end
 
@@ -47,7 +47,7 @@ describe "Todos", :js => true do
       end
       page.should have_no_content('starts as todo')
     end
-    it "leave a paper trail" do
+    it "leave a audit trail" do
       visit history_patient_path(patient.id)
       find("table").should have_content('@example.com')
     end

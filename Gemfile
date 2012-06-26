@@ -7,6 +7,7 @@ gem 'mysql'
 gem 'decent_exposure', '~> 1.0.2'
 gem "simple_form", "2.0.1"
 gem "devise", "2.0.4"
+gem "audited-activerecord", "~> 3.0.0.rc1"
 
 #support coffeescript in rails unobtrusive js on the server
 gem 'therubyracer', :platform => :ruby

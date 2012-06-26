@@ -16,11 +16,11 @@ class Patient < ActiveRecord::Base
   end
 
   def to_dos
-    to_do_items.select{|item| "todo" == item.state}
+    to_do_items.select{|item| "todo" == item.status}
   end
 
   def pendings
-    to_do_items.select{|item| "pending" == item.state}
+    to_do_items.select{|item| "pending" == item.status}
   end
 
   def name
