@@ -27,7 +27,7 @@ describe "Todos", :js => true do
     end
 
   end
-  describe "existing Todos" do
+  describe "an existing Todo" do
     before do
       todo = patient.to_do_items.create(:description=>'starts as todo')
       visit edit_patient_path(patient.id)
@@ -47,7 +47,7 @@ describe "Todos", :js => true do
       end
       page.should have_no_content('starts as todo')
     end
-    it "leave a audit trail" do
+    it "leaves an audit trail when created" do
       visit history_patient_path(patient.id)
       find("table").should have_content('@example.com')
     end
