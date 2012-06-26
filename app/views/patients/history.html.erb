@@ -17,8 +17,7 @@
       <th style='width : 15em'>Time</th>
       <th>Updated by</th>
       <th>TODO List Item</th>
-      <th>Action</th>
-      <th>Status</th>
+      <th>Item Status</th>
     </thead>
   <tbody>
     <% patient.to_do_items.each do |to_do_item| %>
@@ -27,8 +26,7 @@
           <td><%= item_audit.created_at %></td>
           <td><%= item_audit.user.try(:email) %></td>
           <td><%= to_do_item.description %></td>
-          <td><%= item_audit.action %></td>
-          <td><%= item_audit.audited_changes['status'].to_s %></td>
+          <td><%= audit_status(item_audit.audited_changes['status'])%></td>
         </tr>
       <% end %>
     <% end %>
