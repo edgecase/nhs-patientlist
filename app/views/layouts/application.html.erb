@@ -8,7 +8,16 @@
 </head>
 <body>
   <% if user_signed_in? %> 
-  <%= link_to "Sign out", destroy_user_session_path, :method => 'DELETE' %>
+  <nav class="clearfix">
+    <div class="left">
+      <%= link_to "Home", root_path %>
+      <%= link_to "My Lists", user_custom_patient_lists_path(current_user.id) %>
+    </div>
+    <div class="right float">
+      <%= current_user.email %>
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    </div>
+  </nav>
   <% end %>
 <%= yield %>
 

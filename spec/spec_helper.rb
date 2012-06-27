@@ -76,3 +76,11 @@ end
 def current_user
   User.first || User.make!
 end
+
+# for controller specs
+def login_user
+  before(:each) do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    sign_in current_user
+  end
+end

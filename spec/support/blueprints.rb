@@ -18,4 +18,6 @@ User.blueprint do
   email { "test2@example.com" }
   password { "password" }
 end
+CustomPatientList.blueprint do
+end
 

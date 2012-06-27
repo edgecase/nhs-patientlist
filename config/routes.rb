@@ -1,5 +1,9 @@
 NhsPatientlist::Application.routes.draw do
   devise_for :users
+  
+  resources :users, :only => [] do
+    resources :custom_patient_lists
+  end
 
   resources :patient_lists, :only=>[] do
     collection do
