@@ -4,12 +4,10 @@ module PatientsHelper
   end
 
   def back_link_text
-    return "Back to #{ward}" if ward
-    "Back to all patients"
+    ward ? "Back to #{ward}" : "Back to all patients"
   end
 
   def audit_status(status)
-     return status[1] if status.is_a?(Array)
-     status
+     status.is_a?(Array) ? status[1] : status
   end
 end
