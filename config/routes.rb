@@ -5,14 +5,11 @@ NhsPatientlist::Application.routes.draw do
     resources :custom_patient_lists
   end
 
-  resources :patient_lists, :only=>[] do
-    collection do
+  resources :patients, :only=>[:edit, :update] do
+     collection do
       get 'current'
       get 'select_ward'
     end
-  end
-
-  resources :patients, :only=>[:edit, :update] do
     member do
       get 'history'
       post 'update_risk_level'
@@ -24,5 +21,5 @@ NhsPatientlist::Application.routes.draw do
     end
   end
 
-  root :to => "patient_lists#select_ward"
+  root :to => "patients#select_ward"
 end

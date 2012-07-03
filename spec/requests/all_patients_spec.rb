@@ -12,7 +12,7 @@ describe "Patients list" do
   end
 
   describe "Patients list reacts to 'ward' change", :js => true do
-    before { visit current_patient_lists_path }
+    before { visit current_patients_path }
 
     it "changes the ward when a new one is selected" do
       select('RENAL', from: 'ward')
@@ -33,14 +33,14 @@ describe "Patients list" do
   describe "A patient's risk level is persisted to the database", :js => true do
 
     it "should have a patient with a risk level" do
-      visit current_patient_lists_path
+      visit current_patients_path
       page.should have_select('risk_level')
     end
 
     it "should persist the risk level when changed" do
-      visit current_patient_lists_path
+      visit current_patients_path
       select('high', from: 'risk_level')
-      visit current_patient_lists_path
+      visit current_patients_path
       page.should have_select('risk_level', :selected => 'high')
     end
   end
