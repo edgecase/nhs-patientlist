@@ -1,7 +1,8 @@
 class Patient < ActiveRecord::Base
   self.table_name = 'pats'
   self.primary_key = 'pat_id'
-
+  alias :patient_id :id
+  
   has_many :admissions, :primary_key => "hospno", :foreign_key => 'admhospno'
   has_many :to_do_items
   has_many :risk_level_events, :order=>"id ASC"
@@ -27,5 +28,13 @@ class Patient < ActiveRecord::Base
 
   def name
     "#{firstnames} #{lastname}"
+  end
+
+  def patient_detail # just for symmetry
+    PatientDetail.new(admission)
+  end
+
+  def admission
+    Admission.find_by_admpid(pat_id)
   end
 end

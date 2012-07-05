@@ -2,6 +2,7 @@ class PatientListsController < ApplicationController
 
   expose(:user)
   expose(:user_patient_lists) { user.patient_lists }
+  expose(:user_patient_list)
   expose(:patient_lists) { current_user.patient_lists }
   expose(:patient_list)
 
@@ -10,6 +11,10 @@ class PatientListsController < ApplicationController
 
   def new
   end
+
+  def show
+  end
+  
   
   def create
     if patient_list.save

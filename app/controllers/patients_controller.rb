@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
   expose(:wards){Admission.wards}
   expose(:patient)
   expose(:patients){ ward.nil? ? PatientDetail.admitted : PatientDetail.in_ward(ward)}
-
+  
   def history
   end
 
@@ -20,8 +20,6 @@ class PatientsController < ApplicationController
       format.js
     end
   end
-
-
 
   def current
     session[:ward] = ward

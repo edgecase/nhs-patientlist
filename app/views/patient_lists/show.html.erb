@@ -1,0 +1,52 @@
+<header>
+  <h2> patient list </h2>
+</header>
+
+<table>
+    <thead>
+      <th>risk level</th>
+      <th>ward</th>
+      <th>consultant</th>
+      <th>details</th>
+      <th>pmh</th>
+      <th>allergies</th>
+      <th>pending</th>
+      <th>todo</th>
+      <th>actions</th>
+    </thead>
+  <tbody>
+    <% user_patient_list.patients.each do |pat| %>
+      <% patient = pat.patient_detail %>
+      <tr class='patient_detail' data-patient-id="<%=patient.patient_id%>">
+        <td class='risk-level'>
+          <%= form_tag(update_risk_level_patient_path(patient.patient_id), :method => "post", :remote => true, :class => 'risk-level') do %>
+            <span>
+              <%= select_tag "risk_level", options_for_select(["low","medium","high"], :selected=>patient.risk_level) %>
+              <%= submit_tag "Update Risk Level" %>
+              <%= image_tag('spinner.gif', :class => 'ajax-wait') %>
+            </span>
+          <% end %>
+        </td>
+        <td><%= patient.ward %></td>
+        <td><%= patient.consultant_name %></td>
+        <td class="details">
+          <p>Name: <%= patient.name %> (<%= patient.sex %>)</p>
+          <p>Hospital num: <%= patient.hospno %></p>
+          <p>DOB: <%= patient.birthdate %></p>
+        </td>
+        <td><%= patient.pmh %></td>
+        <td><%= patient.allergies %></td>
+        <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.pendings), edit_patient_path(patient.patient_id, :ward=>nil) %></td>
+        <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.to_dos), edit_patient_path(patient.patient_id, :ward=>nil) %></td>
+        <td>
+          <p>
+            <%= link_to "history", history_patient_path(patient.patient_id, :ward=>nil) %>
+          </p>
+          <p><%= link_to "handover", "#" %></p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
