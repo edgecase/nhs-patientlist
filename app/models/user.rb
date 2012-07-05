@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :custom_patient_lists
+  has_many :patient_lists
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

@@ -15,11 +15,11 @@ describe "Patients list" do
   describe "Patient Lists" do
 
     it "displays 'new list' if I'm on 'my lists'" do
-      visit user_custom_patient_lists_path(current_user)
+      visit user_patient_lists_path(current_user)
       page.should have_css('.new-list')
     end
     it "doesn't display 'new list' if I'm on another users' lists" do
-      visit user_custom_patient_lists_path(other_user)
+      visit user_patient_lists_path(other_user)
       page.should_not have_css('.new-list')
     end
 

@@ -2,7 +2,7 @@ NhsPatientlist::Application.routes.draw do
   devise_for :users
   
   resources :users, :only => [] do
-    resources :custom_patient_lists
+    resources :patient_lists
   end
 
   resources :patients, :only=>[:edit, :update] do

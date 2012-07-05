@@ -1,26 +1,23 @@
-require 'csv'
 class PatientListsController < ApplicationController
-  expose(:wards){Admission.wards}
-  expose(:ward){ params[:ward]}
-  expose(:patients){ ward.nil? ? PatientDetail.admitted : PatientDetail.in_ward(ward)}
 
-  def current
-    session[:ward] = ward
-    respond_to do |fmt|
-      fmt.csv {render :text=>patient_csv, :content_type => 'application/csv'}
-      fmt.html
+  expose(:user)
+  expose(:user_patient_lists) { user.patient_lists }
+  expose(:patient_lists) { current_user.patient_lists }
+  expose(:patient_list)
+
+  def index
+  end
+
+  def new
+  end
+  
+  def create
+    if patient_list.save
+      redirect_to :action => :index, :notice => "Successfully created new list"
+    else
+      render :new
     end
   end
 
-
-  private
-  def patient_csv
-    CSV.generate do |csv|
-      csv << %w(ward name sex hospno dob pmh allergies pending todo)
-      patients.each do |pt|
-        csv << [pt.ward, pt.name, pt.sex, pt.hospno, pt.birthdate, pt.pmh, pt.allergies, pt.to_dos.map(&:description) * ",", pt.pendings.map(&:description) * ","]
-      end
-    end
-  end
 
 end

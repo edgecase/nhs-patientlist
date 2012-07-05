@@ -1,0 +1,9 @@
+
+<%= form_for(patient_list, :url => user_patient_lists_path(current_user.id)) do |f| %>
+ <% if patient_list.errors.any? %>
+   Could not create new list
+ <% end %>
+ <%= f.label :name %>
+ <%= f.text_field :name %>
+ <%= f.submit "Create List" %>
+<% end %>
