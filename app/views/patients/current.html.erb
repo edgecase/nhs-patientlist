@@ -1,0 +1,14 @@
+<header>
+  <%= render 'select_ward' %>
+  <h2>Current Patient List</h2>
+  <% if ward %>
+    <h2><%= ward %> Patients</h2>
+  <% else %>
+    <h2>All Patients</h2>
+  <% end %>
+  <%= link_to "Download as CSV (for import to Excel)", current_patients_path(:ward=>ward, :format=>'csv'), :class=>'download' %>
+</header>
+
+<%= render :partial => "patient_details/details_table", :locals => {
+:patient_details => patients 
+} %>

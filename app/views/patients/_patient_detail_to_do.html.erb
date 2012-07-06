@@ -1,0 +1,8 @@
+<%= "Nothing" if to_dos.empty? %>
+
+<ul>
+  <% to_dos.each do |to_do| %>
+    <li><%= to_do.description %></li>
+  <% end %>
+</ul>
+

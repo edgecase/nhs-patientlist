@@ -1,14 +1,15 @@
 NhsPatientlist::Application.routes.draw do
   devise_for :users
-
-  resources :patient_lists, :only=>[] do
-    collection do
-      get 'current'
-      get 'select_ward'
-    end
+  
+  resources :users, :only => [] do
+    resources :patient_lists
   end
 
   resources :patients, :only=>[:edit, :update] do
+     collection do
+      get 'current'
+      get 'select_ward'
+    end
     member do
       get 'history'
       post 'update_risk_level'
@@ -20,5 +21,5 @@ NhsPatientlist::Application.routes.draw do
     end
   end
 
-  root :to => "patient_lists#select_ward"
+  root :to => "patients#select_ward"
 end

@@ -1,7 +1,0 @@
-<%= form_tag current_patient_lists_path, :method=>'get', :id => 'ward_form' do %>
-  Select ward: 
-  <%= select_tag "ward", options_for_select( ["--"] + wards, :selected=>ward)%>
-  <%= submit_tag "Get Patients" %>
-  <span>or <%= link_to "show all patients", current_patient_lists_path %></span>
-<% end %>
-

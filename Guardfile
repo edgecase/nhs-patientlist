@@ -1,5 +1,6 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
+ignore(/\/?\.\#/) 
 
 guard 'livereload' do
   watch(%r{app/views/.+\.(erb|haml|slim)})

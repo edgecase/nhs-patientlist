@@ -1,14 +1,3 @@
-<header>
-  <%= render 'select_ward' %>
-  <h2>Current Patient List</h2>
-  <% if ward %>
-    <h2><%= ward %> Patients</h2>
-  <% else %>
-    <h2>All Patients</h2>
-  <% end %>
-  <%= link_to "Download as CSV (for import to Excel)", current_patient_lists_path(:ward=>ward, :format=>'csv'), :class=>'download' %>
-</header>
-
 <table>
     <thead>
       <th>risk level</th>
@@ -22,7 +11,7 @@
       <th>actions</th>
     </thead>
   <tbody>
-    <% patients.each do |patient| %>
+    <% patient_details.each do |patient| %>
       <tr class='patient_detail' data-patient-id="<%=patient.patient_id%>">
         <td class='risk-level'>
           <%= form_tag(update_risk_level_patient_path(patient.patient_id), :method => "post", :remote => true, :class => 'risk-level') do %>
@@ -42,11 +31,11 @@
         </td>
         <td><%= patient.pmh %></td>
         <td><%= patient.allergies %></td>
-        <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.pendings), edit_patient_path(patient.patient_id, :ward=>ward) %></td>
-        <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.to_dos), edit_patient_path(patient.patient_id, :ward=>ward) %></td>
+        <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.pendings), edit_patient_path(patient.patient_id, :ward=>nil) %></td>
+        <td><%= link_to render('patient_detail_to_do',:to_dos=>patient.to_dos), edit_patient_path(patient.patient_id, :ward=>nil) %></td>
         <td>
           <p>
-            <%= link_to "history", history_patient_path(patient.patient_id, :ward=>ward) %>
+            <%= link_to "history", history_patient_path(patient.patient_id, :ward=>nil) %>
           </p>
           <p><%= link_to "handover", "#" %></p>
         </td>
@@ -54,5 +43,3 @@
     <% end %>
   </tbody>
 </table>
-
-
