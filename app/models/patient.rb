@@ -31,10 +31,10 @@ class Patient < ActiveRecord::Base
   end
 
   def patient_detail # just for symmetry
-    PatientDetail.new(admission)
+   @detail ||= PatientDetail.new(admission)
   end
 
   def admission
-    Admission.find_by_admpid(pat_id)
+    Admission.find_by_admpid(id)
   end
 end
