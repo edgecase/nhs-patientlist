@@ -1,5 +1,5 @@
 
-<%= form_for(own_patient_list, :url => user_patient_lists_path(current_user.id)) do |f| %>
+<%= form_for(own_patient_list, :as => :own_patient_list, :url => user_patient_lists_path(current_user.id)) do |f| %>
  <% if own_patient_list.errors.any? %>
    Could not create new list
  <% end %>

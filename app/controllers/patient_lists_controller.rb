@@ -8,7 +8,9 @@ class PatientListsController < ApplicationController
   expose(:user)
   expose(:user_patient_lists) { user.patient_lists }
   expose(:user_patient_list)
-  
+
+  def new
+  end
   
   def create
     if own_patient_list.save
@@ -17,6 +19,5 @@ class PatientListsController < ApplicationController
       render :new
     end
   end
-
 
 end
