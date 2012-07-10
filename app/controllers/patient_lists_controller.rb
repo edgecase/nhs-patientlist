@@ -19,5 +19,18 @@ class PatientListsController < ApplicationController
       render :new
     end
   end
+  
+  def update
+    if own_patient_list.save
+      redirect_to :action => :index, :notice => "Successfully updated list"
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    own_patient_list.destroy
+    redirect_to :action => :index, :notice => "Successfully removed list"
+  end
 
 end
