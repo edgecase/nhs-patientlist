@@ -27,6 +27,9 @@ class PatientListsController < ApplicationController
       render :edit
     end
   end
+
+  def add_user_to_list
+  end
   
   def destroy
     own_patient_list.destroy
