@@ -10,6 +10,7 @@ describe "Patient list pages" do
   before do
     patient.save
     admission.save
+    my_list.save
     login(user)
   end
   
@@ -40,12 +41,20 @@ describe "Patient list pages" do
       my_list.save
       visit user_patient_list_path current_user, my_list
       page.should have_content("Inpatients")
-      find("table").should have_content("Rita")
+      find("table").should have_content "Rita"
     end
     
     it "can have a patient added to it" do
-      visit user_patient_list_path(current_user, my_list)
-      #fill_in "new-patient-id", with: 
+      patient2 = Patient.make!(firstnames: "Joe", lastname:"O'Really", id: 1234)
+      adm2     = Admission.make!(currward: "Renal", admstatus:  "Admitted", patient: patient2, admpid: patient2.id)
+      visit patient_path(patient2)
+      within("#patient-lists") do
+        select "Inpatients", from: 'patient_patient_lists'
+        click_button "add-to-list"
+      end
+      find("#patient-lists").should have_content "Inpatients"
+      visit user_patient_list_path current_user, my_list
+      find("table").should have_content "Joe"
     end
     
     it "can have a patient removed from it" do

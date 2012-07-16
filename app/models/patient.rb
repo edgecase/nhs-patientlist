@@ -6,7 +6,7 @@ class Patient < ActiveRecord::Base
   has_many :admissions, :primary_key => "hospno", :foreign_key => 'admhospno'
   has_many :to_do_items
   has_many :risk_level_events, :order=>"id ASC"
-  has_many :patient_lists_patients
+  has_many :patient_lists_patients, :class_name => "PatientListsPatients"
   has_many :patient_lists, :through => :patient_lists_patients
 
   def risk_level

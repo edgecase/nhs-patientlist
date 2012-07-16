@@ -28,9 +28,7 @@ class PatientListsController < ApplicationController
     end
   end
 
-  def add_user_to_list
-  end
-  
+
   def destroy
     own_patient_list.destroy
     redirect_to :action => :index, :notice => "Successfully removed list"

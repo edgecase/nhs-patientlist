@@ -8,6 +8,9 @@ class PatientsController < ApplicationController
   def history
   end
 
+  def show
+  end
+
   def update_risk_level
     @patient = Patient.find(params[:id])
     @result = (@patient.risk_level = params[:risk_level])
@@ -18,6 +21,19 @@ class PatientsController < ApplicationController
         format.html { redirect_to :back, :notice => "The risk level wasn't saved. Please try again." }
       end
       format.js
+    end
+  end
+
+  def add_to_patient_list
+    @patient = Patient.find(params[:id])
+    list = current_user.patient_lists.find params[:patient][:patient_lists]
+    list.patients << @patient
+    respond_to do |format|
+      if list.save
+        format.html { redirect_to :back, notice: "Added to list"}
+      else
+        format.html { redirect_to :back, notice: "Could not add to list"}
+      end
     end
   end
 

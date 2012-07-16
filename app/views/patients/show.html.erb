@@ -1,0 +1,20 @@
+<h1><%= patient.name %></h1>
+
+<div id="patient-details">
+  <table>
+    <tr><td>Risk Level:</td> <td><%= patient.risk_level %></td></tr>
+  </table>
+</div>
+<div id="todos">
+</div>
+<div id="patient-lists">
+  <ul>
+    <% patient.patient_lists.each do |l| %>
+      <li><%= l.name + ' ' + l.user.email %> </li>
+    <% end %>
+  </ul>
+  <%= form_for patient, url: add_to_patient_list_patient_path(patient), method: :post do |f| %>
+    <%= f.select :patient_lists, current_user.patient_lists.map { |l|  [l.name, l.id] }, include_blank: true %>
+    <%= f.submit "Add to List", id: "add-to-list" %>
+  <% end %>
+</div>
