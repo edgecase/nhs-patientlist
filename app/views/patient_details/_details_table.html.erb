@@ -40,6 +40,7 @@
             <%= link_to "history", history_patient_path(patient.patient_id, :ward=>nil) %>
           </p>
           <p><%= link_to "handover", "#" %></p>
+          <p><%= link_to "add to list", patient_path(patient.patient_id) %></p>
         </td>
       </tr>
     <% end %>
