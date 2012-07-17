@@ -5,7 +5,7 @@ NhsPatientlist::Application.routes.draw do
     resources :patient_lists do
     end
   end
-
+  
   resources :patients, :only=>[:show, :edit, :update] do
      collection do
       get 'current'
@@ -14,7 +14,6 @@ NhsPatientlist::Application.routes.draw do
     member do
       get 'history'
       post 'update_risk_level'
-      post 'add_to_patient_list'
     end
     resources :to_do_items do
       member do
@@ -22,6 +21,8 @@ NhsPatientlist::Application.routes.draw do
       end
     end
   end
+  
+  resources :patient_lists_patients, only: [:show, :create, :destroy]
 
   root :to => "patients#select_ward"
 end

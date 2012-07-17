@@ -27,6 +27,10 @@ describe "Patient list pages" do
 
   
   describe "a patient list" do
+    before :each do
+      my_list.patients << patient
+      my_list.save
+    end
     it "can be created" do
       list_name = "test patient list"
       visit user_patient_lists_path current_user
@@ -37,8 +41,6 @@ describe "Patient list pages" do
     end
     
     it "can be viewed" do
-      my_list.patients << patient
-      my_list.save
       visit user_patient_list_path current_user, my_list
       page.should have_content("Inpatients")
       find("table").should have_content "Rita"
@@ -58,6 +60,11 @@ describe "Patient list pages" do
     end
     
     it "can have a patient removed from it" do
+      visit user_patient_list_path current_user, my_list
+      within(:xpath, '//table//tr[@data-patient-id="123"]') do
+        click_link 'remove from list'
+      end
+      save_and_open_page
       
     end
 

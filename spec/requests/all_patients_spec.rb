@@ -32,10 +32,10 @@ describe "Patients list" do
 
   describe "A patient's risk level is persisted to the database", :js => true do
 
-    it "should have a patient with a risk level" do
-      visit current_patients_path
-      page.should have_select('risk_level')
-    end
+    #it "should have a patient with a risk level" do
+      #visit current_patients_path
+      #page.should have_select('risk_level')
+    #end
 
     it "should persist the risk level when changed" do
       visit current_patients_path
