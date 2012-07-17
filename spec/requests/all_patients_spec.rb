@@ -18,10 +18,10 @@ describe "Patients list" do
       select('RENAL', from: 'ward')
       page.should have_content("RENAL Patients")
     end
-    it "does not change wards when '--' is selected" do
+    it "does not change wards when nothing is selected" do
       select('RENAL', from: 'ward')
       page.should have_content("RENAL Patients")
-      select('--', from: 'ward')
+      select('', from: 'ward')
       page.should have_content("RENAL Patients")
     end
     it "shows all patients when 'all patients' is clicked" do
