@@ -37,6 +37,12 @@ class PatientsController < ApplicationController
     end
   end
 
+  def remove_from_patient_list
+    @patient = Patient.find(params[:id])
+    list = current_user.patient_lists.find params[:patient][:patient_lists]
+    redirect_to :back
+  end
+
   def current
     session[:ward] = ward
     respond_to do |fmt|

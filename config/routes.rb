@@ -15,6 +15,7 @@ NhsPatientlist::Application.routes.draw do
       get 'history'
       post 'update_risk_level'
       post 'add_to_patient_list'
+      delete 'remove_from_patient_list'
     end
     resources :to_do_items do
       member do

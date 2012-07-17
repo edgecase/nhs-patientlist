@@ -40,7 +40,11 @@
             <%= link_to "history", history_patient_path(patient.patient_id, :ward=>nil) %>
           </p>
           <p><%= link_to "handover", "#" %></p>
-          <p><%= link_to "add to list", patient_path(patient.patient_id) %></p>
+          <% if controller.controller_name == 'patient_lists' %>
+            <p><%= link_to "remove from this list", remove_from_patient_list_patient_path(patient.patient_id), method: :delete  %>
+          <% else %>
+            <p><%= link_to "add to list", patient_path(patient.patient_id) %></p>
+          <% end %>
         </td>
       </tr>
     <% end %>
