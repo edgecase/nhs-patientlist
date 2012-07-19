@@ -64,8 +64,6 @@ describe "Patient list pages" do
       within(:xpath, '//table//tr[@data-patient-id="123"]') do
         click_link 'remove from list'
       end
-      save_and_open_page
-      
     end
 
   end

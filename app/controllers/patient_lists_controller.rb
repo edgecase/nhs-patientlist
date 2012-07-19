@@ -33,4 +33,5 @@ class PatientListsController < ApplicationController
     redirect_to :action => :index, :notice => "Successfully removed list"
   end
 
+
 end
