@@ -4,3 +4,10 @@
 <%= render :partial => "patient_details/details_table", :locals => {
 :patient_details => user_patient_list.patients.map { |p| p.patient_detail }
 } %>
+
+<div id="list-operations">
+  <% if user == current_user %>
+    <%= link_to "Delete this list", user_patient_list_path(user_patient_list), 
+      method: :delete, confirm: "Are you sure you want to delete #{user_patient_list.name}", id: 'delete-list' %>
+  <% end %>
+</div>

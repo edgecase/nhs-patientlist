@@ -40,6 +40,20 @@ describe "Patient list pages" do
       click_button 'Create List'
       page.should have_content list_name
     end
+
+    it "can be deleted", js: true do
+      visit user_patient_lists_path current_user
+      page.should have_content my_list.name
+      visit user_patient_list_path current_user, my_list
+      click_link 'delete-list'
+      page.should_not have_content my_list.name
+    end
+
+    it "doesn't have a delete link if it's another user's list" do
+      other_list = other_user.patient_lists.create(:name => "Outpatients") 
+      visit user_patient_list_path other_user, other_list
+      page.should_not have_content "Delete"
+    end
     
     it "can be viewed" do
       visit user_patient_list_path current_user, my_list

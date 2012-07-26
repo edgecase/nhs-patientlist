@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe PatientListsController do
   login_user
+  let(:patient) { Patient.make! }
+  let(:list) { PatientList.make!(:user => current_user, :name => 'Inpatients') }
   describe '#index' do
-    let(:patient) { Patient.make! }
-    let(:list) { PatientList.make!(:user => current_user, :name => 'Inpatients') }
     it "gets the current user's custom patient lists" do
       get :index, { :user_id => current_user.id }
       controller.send(:own_patient_lists).should eq(PatientList.find_all_by_user_id(current_user.id))
@@ -26,6 +26,18 @@ describe PatientListsController do
     it "has a new page with a patient_list" do
       get :new
       assigns(:own_patient_list)
+    end
+  end
+  describe '#destroy' do
+    it "destroys the list if you own it" do
+      delete :destroy, user_id: current_user.id, id: list.id
+      response.should redirect_to :controller => :patient_lists, :action => :index, :notice =>  "Successfully removed list"
+    end
+    it "doesn't destroy the list if you don't own it" do
+      other_user = User.make!(:email => 'test2@example.net');
+      other_list = other_user.patient_lists.create(:name => "Outpatients")
+      delete :destroy, user_id: other_user.id, id: other_list.id
+      response.should redirect_to :back
     end
   end
 end
