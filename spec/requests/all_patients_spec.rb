@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Patients list" do
+describe "All patients" do
   let(:user) {User.make!}
   let(:patient){Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123)}
   let(:admission){Admission.make!(:currward=>'RENAL', :admstatus => "Admitted", :patient=>patient)}
