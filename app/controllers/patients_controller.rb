@@ -24,16 +24,18 @@ class PatientsController < ApplicationController
     end
   end
 
-  def add_to_patient_list
-    @patient = Patient.find(params[:id])
-    list = current_user.patient_lists.find params[:patient][:patient_lists]
-    list.patients << @patient
-    respond_to do |format|
-      if list.save
-        format.html { redirect_to :back, notice: "Added to list"}
-      else
-        format.html { redirect_to :back, notice: "Could not add to list"}
-      end
+  # membership operations:
+  def add_to_list 
+    list = current_user.patient_lists.find(params[:patient_lists_patients][:patient_list])
+    list.patients << Patient.find(params[:patient_id])
+  end
+
+  def remove_from_list
+    membership = PatientListsPatients.where(patient_list_id: params[:id]).where(patient_id: params[:patient_id])
+    if membership.owner == current_user
+      membership.destroy
+    else
+      render :status => :unauthorized
     end
   end
 
@@ -50,7 +52,6 @@ class PatientsController < ApplicationController
       fmt.html
     end
   end
-
 
   private
   def patient_csv

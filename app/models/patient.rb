@@ -10,7 +10,8 @@ class Patient < ActiveRecord::Base
   has_many :patient_lists, :through => :patient_lists_patients
 
   def risk_level
-    risk_level_events.last.risk_level
+    event = risk_level_events.last
+    event ? event.risk_level : 'low'
   end
 
   def risk_level=(new_value)

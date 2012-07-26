@@ -14,8 +14,9 @@
       <li><%= l.name + ' ' + l.user.email %> </li>
     <% end %>
   </ul>
-  <%= form_for patient, url: add_to_patient_list_patient_path(patient), method: :post do |f| %>
-    <%= f.select :patient_lists, current_user.patient_lists.map { |l|  [l.name, l.id] }, include_blank: true %>
+  <%= form_for :membership, url: memberships_path do |f| %>
+    <%= hidden_field_tag :patient_id, patient.id %>
+    <%= f.select :patient_list, current_user.patient_lists.map { |l|  [l.name, l.id] }, include_blank: true %>
     <%= f.submit "Add to List", id: "add-to-list" %>
   <% end %>
 </div>

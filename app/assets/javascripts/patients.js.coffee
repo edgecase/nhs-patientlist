@@ -6,7 +6,6 @@ jQuery ($) ->
 
   $('form.risk-level input[type]=submit').hide()
   $('form.risk-level select').change (event) ->
-    console.log event
     $riskForm = $(this).closest('form')
     $ajaxWait = $('.ajax-wait', $(this).parent() )
     $ajaxWait.show()
