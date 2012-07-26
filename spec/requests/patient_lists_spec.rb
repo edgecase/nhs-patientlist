@@ -11,6 +11,7 @@ describe "Patient list pages" do
     patient.save
     admission.save
     my_list.save
+    user.save
     login(user)
   end
   
@@ -31,6 +32,7 @@ describe "Patient list pages" do
       my_list.patients << patient
       my_list.save
     end
+
     it "can be created" do
       list_name = "test patient list"
       visit user_patient_lists_path current_user
@@ -51,7 +53,7 @@ describe "Patient list pages" do
       adm2     = Admission.make!(currward: "Renal", admstatus:  "Admitted", patient: patient2, admpid: patient2.id)
       visit patient_path(patient2)
       within("#patient-lists") do
-        select "Inpatients", from: 'patient_patient_lists'
+        select "Inpatients", from: 'membership_patient_list'
         click_button "add-to-list"
       end
       find("#patient-lists").should have_content "Inpatients"
@@ -62,7 +64,7 @@ describe "Patient list pages" do
     it "can have a patient removed from it" do
       visit user_patient_list_path current_user, my_list
       within(:xpath, '//table//tr[@data-patient-id="123"]') do
-        click_link 'remove from list'
+        find('.remove').click 
       end
     end
 

@@ -41,7 +41,11 @@
           </p>
           <p><%= link_to "handover", "#" %></p>
           <% if controller_name == 'patient_lists' %>
-            <p><%= link_to "remove from this list", memberships_path(patient_id:patient.patient_id, patient_list_id: user_patient_list.id), method: :delete  %>
+            <p><%= link_to "remove from this list", url_for(:action => :destroy, :controller => :memberships,
+                                                            :patient_id      => patient.patient_id,
+                                                            :patient_list_id => own_patient_list.id),
+                                                            :class           => 'remove', 
+                                                            :method => :delete  %>
           <% else %>
             <p><%= link_to "add to list", patient_path(patient.patient_id) %></p>
           <% end %>
