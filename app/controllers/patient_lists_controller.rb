@@ -29,8 +29,12 @@ class PatientListsController < ApplicationController
   end
 
   def destroy
-    own_patient_list.destroy
-    redirect_to :action => :index, :notice => "Successfully removed list"
+    begin
+      own_patient_list.destroy
+      redirect_to :action => :index, :notice => "Successfully removed list"
+    rescue
+      redirect_to :action => :show, :notice => "Could not delete list"
+    end
   end
 
 
