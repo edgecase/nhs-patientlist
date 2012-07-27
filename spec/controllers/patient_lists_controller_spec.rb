@@ -29,13 +29,16 @@ describe PatientListsController do
     end
   end
   describe '#destroy' do
+      let(:other_user) { User.make!(:email => 'test2@example.net')}
+      let(:other_list) { other_user.patient_lists.create(:name => "Outpatients")}
     it "destroys the list if you own it" do
       controller.send(:own_patient_list).should_receive(:destroy)
       delete :destroy, user_id: current_user.id, id: list.id
+      response.should redirect_to :controller => :patient_lists,
+        :user_id => current_user.id, 
+        :action => :index, :notice =>  "Successfully removed list"
     end
     it "doesn't destroy the list if you don't own it" do
-      other_user = User.make!(:email => 'test2@example.net');
-      other_list = other_user.patient_lists.create(:name => "Outpatients")
       delete :destroy, user_id: other_user.id, id: other_list.id
       other_list.reload.name.should == "Outpatients"
     end

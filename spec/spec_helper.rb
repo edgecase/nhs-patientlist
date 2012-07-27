@@ -74,7 +74,7 @@ end
 
 # current_user helper for model specs
 def current_user
-  User.first || User.make!
+  User.find_by_email("test@example.com") || User.make!(email: "test@example.com")
 end
 
 # for controller specs

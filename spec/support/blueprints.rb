@@ -15,7 +15,7 @@ ToDoItem.blueprint do
 end
 
 User.blueprint do
-  email { "test2@example.com" }
+  email { "test-#{sn}@example.com" }
   password { "password" }
 end
 PatientList.blueprint do

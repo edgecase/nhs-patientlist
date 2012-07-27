@@ -1,13 +1,16 @@
 require 'spec_helper'
 
 describe "Patient list pages" do
-  let(:user)       { User.make! }
-  let(:other_user) { User.make!(:email => "another-user@example.com") }
+  let(:user)       { User.make!(email: "test@example.com") }
+  let(:other_user) { User.make! }
   let(:patient)    { Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123) }
   let(:admission)  { Admission.make!(:currward=>'RENAL', :admstatus => "Admitted", :patient=>patient, :admpid => 123) }
   let(:my_list)    { user.patient_lists.create(:name => "Inpatients") }
 
   before do
+    10.times do
+      User.make!
+    end
     patient.save
     admission.save
     my_list.save
@@ -46,6 +49,7 @@ describe "Patient list pages" do
       page.should have_content my_list.name
       visit user_patient_list_path current_user, my_list
       click_link 'delete-list'
+      find('h2').should have_content current_user.email
       page.should_not have_content my_list.name
     end
 
