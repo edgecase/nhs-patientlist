@@ -24,27 +24,6 @@ class PatientsController < ApplicationController
     end
   end
 
-  # membership operations:
-  def add_to_list 
-    list = current_user.patient_lists.find(params[:patient_lists_patients][:patient_list])
-    list.patients << Patient.find(params[:patient_id])
-  end
-
-  def remove_from_list
-    membership = PatientListsPatients.where(patient_list_id: params[:id]).where(patient_id: params[:patient_id])
-    if membership.owner == current_user
-      membership.destroy
-    else
-      render :status => :unauthorized
-    end
-  end
-
-  def remove_from_patient_list
-    @patient = Patient.find(params[:id])
-    list = current_user.patient_lists.find params[:patient][:patient_lists]
-    redirect_to :back
-  end
-
   def current
     session[:ward] = ward
     respond_to do |fmt|
