@@ -1,4 +1,4 @@
-class PatientListsPatients < ActiveRecord::Base
+class Membership < ActiveRecord::Base
   belongs_to :patient_list
   belongs_to :patient
   

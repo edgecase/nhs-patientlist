@@ -7,7 +7,7 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-    membership = PatientListsPatients.where(patient_list_id: params[:patient_list_id]).where(patient_id: params[:patient_id]).last
+    membership = Membership.where(patient_list_id: params[:patient_list_id]).where(patient_id: params[:patient_id]).last
     if membership.owner == current_user
       membership.destroy
       redirect_to :back
