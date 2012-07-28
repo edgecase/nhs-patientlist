@@ -36,10 +36,7 @@ group :development, :test do
   gem 'thin'
   gem 'machinist', '~>2.0'
   gem 'guard'
-  gem 'guard-rspec'
   gem 'rb-fsevent'
   gem 'guard-livereload'
-  gem 'guard-spork'
-  gem 'spork'
   gem 'pry-rails'
 end
