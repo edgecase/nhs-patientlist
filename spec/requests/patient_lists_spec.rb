@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Patient list pages" do
+describe "Patient lists" do
   let(:user)       { User.make!(email: "test@example.com") }
   let(:other_user) { User.make! }
   let(:patient)    { Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123) }
@@ -16,14 +16,18 @@ describe "Patient list pages" do
     my_list.save
     login(user)
   end
-  
 
-  it "my lists displays 'new list'" do
+  it "is visible in the sidebar" do
+    visit root_path
+    find('#sidebar').should have_content my_list.name
+  end
+
+  it "displays 'new list'" do
     visit user_patient_lists_path current_user
     page.should have_css '#new-list'
   end
 
-  it "other user's lists do not display 'new list'" do
+  it "does not display 'new list' on other users' lists" do
     visit user_patient_lists_path other_user
     page.should_not have_css '#new-list' 
   end
