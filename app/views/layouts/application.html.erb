@@ -40,9 +40,6 @@
         <div class="span2" id="sidebar">
           <% if user_signed_in? %>
           <h1>Lists</h1>
-            <%= render :partial => 'patient_lists/index', :locals => { :lists => own_patient_lists } %>
-            <%= link_to "New List",
-              new_user_patient_list_path(current_user), :id => 'new-list' %>
           <% end %>
 
         </div>
