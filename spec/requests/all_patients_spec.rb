@@ -11,7 +11,7 @@ describe "All patients" do
     login(user)
   end
 
-  describe "Patients list reacts to 'ward' change", :js => true do
+  describe "reacts to 'ward' change", :js => true do
     before { visit current_patients_path }
 
     it "changes the ward when a new one is selected" do
