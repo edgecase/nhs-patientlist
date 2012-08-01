@@ -25,7 +25,6 @@
           <ul class="nav pull-left">
             <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "All Patients", current_patients_path %></li>
-            <li><%= link_to "My Lists", user_patient_lists_path(current_user.id) %></li>
           </ul>
           <ul class="nav pull-right">
             <li><p class='navbar-text'><%= current_user.email %></p></li>
