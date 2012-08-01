@@ -41,7 +41,7 @@
           <% if user_signed_in? %>
           <h1>Lists</h1>
            <%= link_to "New List",
-              new_user_patient_list_path(current_user), :id => 'new-list' %>
+              new_user_patient_list_path(current_user), :class => 'new-list' %>
           <% end %>
 
         </div>
