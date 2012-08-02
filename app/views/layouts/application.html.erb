@@ -33,7 +33,7 @@
     </nav> <!-- /navbar -->
     <div class="container">
       <div class="row">
-        <div id="sidebar">
+        <div id="sidebar" class="span2">
           <% if user_signed_in? %>
             <h2>Lists</h2>
             <%= render :partial => 'patient_lists/index', :locals => { :lists => patient_lists } %>
@@ -42,7 +42,7 @@
             <%= render 'patients/select_ward' %>
           <% end %>
         </div>
-        <div id="main">
+        <div id="main" class="span10">
           <%= yield %>
         </div>
       </div>
