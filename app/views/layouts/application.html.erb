@@ -7,7 +7,7 @@
 <!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
-    <title>NHS Patient List</title>
+    <title><%= content_for?(:title) ? yield(:title) : "NHS Patient List" %></title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -18,9 +18,8 @@
   </head>
   <body>
     <!--[if lt IE 7]><p class=chromeframe>Please <a href="http://www.google.com/chromeframe/?redirect=true">install Chrome Frame</a>, a plugin from Google, to use this site.</p><![endif]-->
-    <div class="navbar navbar-fixed-top">
-      <nav class="container clearfix">
-
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
         <% if user_signed_in? %> 
           <ul class="nav pull-left">
             <li><%= link_to "Home", root_path %></li>
@@ -30,26 +29,22 @@
             <li><p class='navbar-text'><%= current_user.email %></p></li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
           </ul>
-
         <% end %>
-      </nav>
-    </div> <!-- /navbar -->
+      </div>
+    </nav> <!-- /navbar -->
     <div class="container">
       <div class="row">
-        <div class="span2" id="sidebar">
+        <div id="sidebar">
           <% if user_signed_in? %>
-          <h1>Lists</h1>
-          <%= render :partial => 'patient_lists/index', :locals => { :lists => patient_lists } %>
-           <%= link_to "New List",
-              new_user_patient_list_path(current_user), :class => 'new-list' %>
+            <h2>Lists</h2>
+            <%= render :partial => 'patient_lists/index', :locals => { :lists => patient_lists } %>
+            <%= link_to "New List", new_user_patient_list_path(current_user), :class => 'new-list' %>
           <% end %>
-
         </div>
-        <div class="span10">
+        <div id="main">
           <%= yield %>
         </div>
       </div>
-
     </div>
   </body>
 </html>

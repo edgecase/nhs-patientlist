@@ -43,9 +43,11 @@ body {
   background: #fff;
   border-bottom: 1px solid @grayLighter;
 }
+
 .navbar .nav > li:first {
   padding:0;
 }
+
 .navbar .nav > li {
   a {
     &:hover, &:active, &:link {
@@ -56,6 +58,9 @@ body {
     margin-left: -9px; //line up the left side
   }
 }
+
+#sidebar { .makeColumn(2); }
+#main    { .makeColumn(10);}
 
 table {
   .table;
