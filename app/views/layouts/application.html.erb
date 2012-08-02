@@ -23,7 +23,6 @@
         <% if user_signed_in? %> 
           <ul class="nav pull-left">
             <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "All Patients", current_patients_path %></li>
           </ul>
           <ul class="nav pull-right">
             <li><p class='navbar-text'><%= current_user.email %></p></li>
@@ -39,6 +38,8 @@
             <h2>Lists</h2>
             <%= render :partial => 'patient_lists/index', :locals => { :lists => patient_lists } %>
             <%= link_to "New List", new_user_patient_list_path(current_user), :class => 'new-list' %>
+            <hr>
+            <%= render 'patients/select_ward' %>
           <% end %>
         </div>
         <div id="main">

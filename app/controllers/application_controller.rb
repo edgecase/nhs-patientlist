@@ -6,4 +6,6 @@ class ApplicationController < ActionController::Base
   # to prevent problem trying to link_to nonexistent list in 'new'
   expose(:patient_lists) { current_user.patient_lists.select { |l| l.persisted? } }
 
+  expose(:ward){ params[:ward] }
+  expose(:wards){Admission.wards}
 end

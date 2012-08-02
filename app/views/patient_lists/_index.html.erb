@@ -1,4 +1,4 @@
-<ul>
+<ul class="nav nav-pill nav-stacked">
 <% lists.each do |list| %>
 <li><%= link_to list.name, user_patient_list_path(list.user_id, list.id) %></li>
 <% end %>
