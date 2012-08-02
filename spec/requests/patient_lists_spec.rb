@@ -53,7 +53,6 @@ describe "Patient lists" do
       page.should have_content my_list.name
       visit user_patient_list_path current_user, my_list
       click_link 'delete-list'
-      find('h2').should have_content current_user.email
       page.should_not have_content my_list.name
     end
 
