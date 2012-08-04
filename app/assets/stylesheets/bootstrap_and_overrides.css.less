@@ -43,6 +43,10 @@ body {
   background: #fff;
   border-bottom: 1px solid @grayLighter;
 }
+.navbar-inner {
+  border: none;
+  background: #fff;
+}
 
 .navbar .nav > li {
   a {
@@ -58,6 +62,16 @@ body {
 table {
   .table;
   .table-striped;
+  width: 100%;
   border-bottom: 1px solid @grayLighter;
 }
 
+/* override native media query behavior */
+@media (max-width: 979px) and (min-width: 768px) {
+  .container{
+    width: auto;
+    padding:5px;
+  }
+  #sidebar { width: 15%; }
+  #main { width: 80%; }
+}
