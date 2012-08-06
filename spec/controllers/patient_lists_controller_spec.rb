@@ -12,20 +12,13 @@ describe PatientListsController do
   end
   describe '#create' do
     let(:outpatients) { "Outpatients" }
+    before { request.env["HTTP_REFERER"] = '/' }
     it "creates a new custom patient list and redirects to the index" do
-      request.env["HTTP_REFERER"] = '/'
       post :create, :own_patient_list => { "name" => outpatients}, :user_id => current_user.id
       current_user.patient_lists.find_by_name(outpatients).should_not be_nil
     end
     it "handles not creating an invalid patient list" do
       expect { post :create, :own_patient_list => {} }.to change(PatientList, :count).by 0
-      response.should render_template(:new)
-    end
-  end
-  describe '#new' do
-    it "has a new page with a patient_list" do
-      get :new
-      assigns(:own_patient_list)
     end
   end
   describe '#destroy' do

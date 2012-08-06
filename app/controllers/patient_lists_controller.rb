@@ -16,7 +16,7 @@ class PatientListsController < ApplicationController
     if own_patient_list.save
       redirect_to :back, :notice => "Successfully created new list"
     else
-      render :new
+      redirect_to :back, :notice => "Could not create list"
     end
   end
   

@@ -39,12 +39,13 @@ describe "Patient lists" do
       my_list.save
     end
 
-    it "can be created" do
+    it "can be created from the sidebar", js: true do
       list_name = "test patient list"
-      visit user_patient_lists_path current_user
-      click_link 'new-list'
-      fill_in "Name", with: list_name
-      click_button 'Create List'
+      visit root_path
+      within('#sidebar') do
+        fill_in "new-list-name", with: list_name
+        click_button 'create-list'
+      end
       page.should have_content list_name
     end
 

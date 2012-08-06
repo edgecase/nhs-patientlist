@@ -39,7 +39,7 @@
           <% if user_signed_in? %>
             <h2>Lists</h2>
             <%= render :partial => 'patient_lists/index', :locals => { :lists => patient_lists } %>
-            <%= link_to "New List", new_user_patient_list_path(current_user), :class => 'new-list' %>
+            <%= render :partial => 'patient_lists/form', :locals => { :own_patient_list => patient_list } %>
             <hr>
             <%= render 'patients/select_ward' %>
           <% end %>

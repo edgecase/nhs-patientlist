@@ -3,7 +3,6 @@
  <% if own_patient_list.errors.any? %>
    Could not create new list
  <% end %>
- <%= f.label :name %>
- <%= f.text_field :name %>
- <%= f.submit "Create List" %>
+ <%= f.text_field :name, placeholder: "List name", id: "new-list-name"%>
+ <%= f.submit "Create List", id: "create-list" %>
 <% end %>
