@@ -8,15 +8,18 @@ class PatientListsController < ApplicationController
   expose(:user)
   expose(:user_patient_lists) { user.patient_lists }
   expose(:user_patient_list)
-
-  def new
-  end
   
   def create
     if own_patient_list.save
-      redirect_to :back, :notice => "Successfully created new list"
+      respond_to do |format|
+        format.html { redirect_to :back, notice: "Successfully created list" }
+        format.json { render json: own_patient_list.to_json }
+      end
     else
-      redirect_to :back, :notice => "Could not create list"
+      respond_to do |format|
+        format.html { redirect_to :back, notice: "Could not create list" }
+        format.json { render json: own_patient_list.errors.full_messages, status: :unprocessable_entity }
+      end
     end
   end
   
