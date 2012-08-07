@@ -1,4 +1,3 @@
-
 <%= form_for(own_patient_list,
              :as => :own_patient_list,
              :url => user_patient_lists_path(current_user.id),
@@ -8,5 +7,6 @@
    Could not create new list
  <% end %>
  <%= f.text_field :name, placeholder: "List name", id: "new-list-name"%>
+ <div class="messages"></div>
  <%= f.submit "Create List", id: "create-list" %>
 <% end %>

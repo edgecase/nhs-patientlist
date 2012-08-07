@@ -18,7 +18,7 @@ class PatientListsController < ApplicationController
     else
       respond_to do |format|
         format.html { redirect_to :back, notice: "Could not create list" }
-        format.json { render json: own_patient_list.errors.full_messages, status: :unprocessable_entity }
+        format.json { render json: own_patient_list.errors, status: :unprocessable_entity }
       end
     end
   end
