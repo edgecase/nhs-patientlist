@@ -45,6 +45,11 @@
           <% end %>
         </div>
         <div id="main" class="span10">
+          <% if notice %>
+            <div class="messages alert">
+              <%= notice %>
+            </div>
+          <% end %>
           <%= yield %>
         </div>
       </div>
