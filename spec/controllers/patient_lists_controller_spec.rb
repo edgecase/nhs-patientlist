@@ -27,9 +27,7 @@ describe PatientListsController do
     it "destroys the list if you own it" do
       controller.send(:own_patient_list).should_receive(:destroy)
       delete :destroy, user_id: current_user.id, id: list.id
-      response.should redirect_to :controller => :patient_lists,
-        :user_id => current_user.id, 
-        :action => :index, :notice =>  "Successfully removed list"
+      response.should redirect_to root_path
     end
     it "doesn't destroy the list if you don't own it" do
       delete :destroy, user_id: other_user.id, id: other_list.id
