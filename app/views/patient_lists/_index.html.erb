@@ -1,5 +1,5 @@
 <ul class="nav" id="patient-list-index">
 <% lists.each do |list| %>
-  <li><%= link_to list.name, user_patient_list_path(list.user_id, list.id) %></li>
+  <li><%= link_to list.name, user_patient_list_path(list.user_id, list.id), :'data-patient-list-id'=> list.id %></li>
 <% end %>
 </ul>

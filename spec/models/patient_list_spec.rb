@@ -5,7 +5,7 @@ describe PatientList do
   let(:outpatients) { "Outpatients" }
   # current_user via spec_helper
   let(:list) { PatientList.make!(:user => current_user, :name => 'Inpatients') }
-  it "can have patients added to it" do
+  it "can have a patient added to it" do
     list.patients << patient
     list.save!
 
@@ -18,6 +18,12 @@ describe PatientList do
     patients.size.should == 1
     p = patients.first
     p.should == patient
+  end
+  it "doesn't allow the same patient to be duplicated on a list" do
+    list.patients << patient
+    list.patients.reload.size.should == 1
+    expect { list.patients << patient }.should raise_error
+    list.patients.reload.size.should == 1
   end
   it "requires a name" do
     expect {

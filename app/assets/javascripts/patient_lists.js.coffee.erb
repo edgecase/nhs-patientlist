@@ -6,7 +6,7 @@ jQuery ($) ->
     'ajax:success': (event, data) ->
       $('.error', event.target).removeClass 'error'
       $('div.messages', event.target).html ''
-      $("""<li><a href="/users/#{data['user_id']}/patient_lists/#{data['id']}">#{data['name']}</a></li>""").appendTo '#patient-list-index'
+      $("""<li><a href="/users/#{data['user_id']}/patient_lists/#{data['id']}" data-patient-list-id="#{data['id']}">#{data['name']}</a></li>""").appendTo '#patient-list-index'
     'ajax:error': (event, data) ->
       $('div.messages', event.target).text JSON.parse(data['responseText'])['name']
       $('#new-list-name', event.target).addClass 'error'
@@ -16,9 +16,10 @@ jQuery ($) ->
   $('#main table tr').draggable
     helper: (event) ->
       $target = $(event.target).closest('tr')
-      $("""<div class="dragging"></div>""")
+      $("""<div class="dragging" data-patient-id="#{$target.attr('data-patient-id')}"></div>""")
         .append($target.find('td:eq(3)').clone())
         .insertAfter('#main table')
+    distance: 5
     scope: 'patient'
     cursor: 'move'
     cursorAt:
@@ -30,4 +31,16 @@ jQuery ($) ->
     tolerance: 'pointer'
     hoverClass: 'drop-hover'
     drop: (event, ui) ->
-      console.log event
+      patientListId = $(event.target).attr 'data-patient-list-id'
+      patientId     = $(ui.helper).attr 'data-patient-id'
+      $.ajax
+        url: "<%= Rails.application.routes.url_helpers.memberships_path %>"
+        type: 'post'
+        dataType: 'json'
+        contentType: 'application/json'
+        data:
+          JSON.stringify
+            membership:
+              patient_list: patientListId
+            patient_id:   patientId
+

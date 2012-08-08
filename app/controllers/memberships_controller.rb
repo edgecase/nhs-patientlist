@@ -2,8 +2,18 @@ class MembershipsController < ApplicationController
   
   def create
     list = current_user.patient_lists.find(params[:membership][:patient_list])
-    list.patients << Patient.find(params[:patient_id])
-    redirect_to :back
+    begin
+      list.patients << Patient.find(params[:patient_id])
+    rescue
+      respond_to do |format|
+        format.html{ redirect_to :back, notice: 'could not add to list' and return }
+        format.json{ render json: list.errors, status: :unprocessable_entity and return}
+      end
+    end
+    respond_to do |format|
+      format.html{ redirect_to :back }
+      format.json{ render json: list.to_json }
+    end
   end
 
   def destroy
