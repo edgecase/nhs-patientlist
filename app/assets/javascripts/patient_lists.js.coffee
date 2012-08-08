@@ -16,12 +16,18 @@ jQuery ($) ->
   $('#main table tr').draggable
     helper: (event) ->
       $target = $(event.target).closest('tr')
-      $("""<table style="width:#{$('#main table').width()}px;" class="dragging"></table>""").append($target.clone()).insertAfter('#main table')
+      $("""<div class="dragging"></div>""")
+        .append($target.find('td:eq(3)').clone())
+        .insertAfter('#main table')
     scope: 'patient'
+    cursor: 'move'
+    cursorAt:
+      top: -5
+      left: -5
     revert: 'invalid'
-  $('#sidebar').droppable
-    accept: 'table'
+  $('#sidebar ul li a').droppable
     scope: 'patient'
+    tolerance: 'pointer'
+    hoverClass: 'drop-hover'
     drop: (event, ui) ->
-      console.log "hi from dropped"
       console.log event
