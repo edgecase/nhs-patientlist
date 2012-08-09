@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727194644) do
+ActiveRecord::Schema.define(:version => 20120809141153) do
 
   create_table "adms", :primary_key => "adm_id", :force => true do |t|
     t.timestamp "admstamp",                                             :null => false
@@ -125,12 +125,16 @@ ActiveRecord::Schema.define(:version => 20120727194644) do
     t.integer "patient_id"
   end
 
+  add_index "memberships", ["patient_list_id", "patient_id"], :name => "index_memberships_on_patient_list_id_and_patient_id", :unique => true
+
   create_table "patient_lists", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "patient_lists", ["name", "user_id"], :name => "index_patient_lists_on_name_and_user_id", :unique => true
 
   create_table "pats", :primary_key => "pat_id", :force => true do |t|
     t.timestamp "patstamp",                                                                      :null => false
