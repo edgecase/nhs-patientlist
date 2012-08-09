@@ -4,10 +4,10 @@ class MembershipsController < ApplicationController
     list = current_user.patient_lists.find(params[:membership][:patient_list])
     begin
       list.patients << Patient.find(params[:patient_id])
-    rescue
+    rescue ActiveRecord::RecordInvalid => e
       respond_to do |format|
         format.html{ redirect_to :back, notice: 'could not add to list' and return }
-        format.json{ render json: list.errors, status: :unprocessable_entity and return}
+        format.json{ render json: e.message.to_json, status: :unprocessable_entity and return}
       end
     end
     respond_to do |format|

@@ -38,6 +38,7 @@
         <div id="sidebar" class="span2">
           <% if user_signed_in? %>
             <h2>Lists</h2>
+             <div id="list-messages"></div>
             <%= render :partial => 'patient_lists/index', :locals => { :lists => patient_lists } %>
             <%= render :partial => 'patient_lists/form', :locals => { :own_patient_list => patient_list } %>
             <hr>
