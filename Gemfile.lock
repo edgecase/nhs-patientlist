@@ -95,10 +95,14 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 1.1.0)
       multi_json (~> 1.0)
+    haml (3.1.6)
     highline (1.6.12)
     hike (1.2.1)
     http_parser.rb (0.5.3)
     i18n (0.6.0)
+    jasminerice (0.0.9)
+      coffee-rails
+      haml
     journey (1.0.3)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -252,6 +256,7 @@ DEPENDENCIES
   ecrails_templates!
   guard
   guard-livereload
+  jasminerice
   jquery-rails
   launchy
   machinist (~> 2.0)

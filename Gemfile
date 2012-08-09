@@ -30,6 +30,7 @@ gem 'capistrano'
 group :development, :test do
   gem "ecrails_templates", :git => "git@github.com:edgecase/ecrails_templates.git"
   gem "rspec-rails", "2.9.0"
+  gem "jasminerice"
   gem 'capybara'
   gem 'poltergeist'
   gem 'launchy'
