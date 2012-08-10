@@ -1,18 +1,4 @@
 jQuery ($) ->
-  $('#new_own_patient_list').bind
-    'ajax:before': (event) ->
-      $('input[type="submit"]', event.target).attr 'disabled', 'true'
-      #disable submit button
-    'ajax:success': (event, data) ->
-      $('.error', event.target).removeClass 'error'
-      $('#list-messages').html ''
-      $("""<li><a href="/users/#{data['user_id']}/patient_lists/#{data['id']}" data-patient-list-id="#{data['id']}">#{data['name']}</a></li>""").appendTo '#patient-list-index'
-    'ajax:error': (event, data) ->
-      $('#list-messages').text JSON.parse(data['responseText'])['name']
-      $('#new-list-name', event.target).addClass 'error'
-    'ajax:complete': (event) ->
-      $('input[type="submit"]', event.target).removeAttr 'disabled'
-
   drop = (event, ui) ->
     patientListId = $(event.target).attr 'data-patient-list-id'
     patientId     = $(ui.helper).attr 'data-patient-id'
@@ -31,15 +17,20 @@ jQuery ($) ->
           alert "Patient is already on the list"
         else
           alert "Could not add patient to list"
-  
-  divhelper = (event) ->
-      $target = $(event.target).closest('tr')
-      $("""<div class="dragging" data-patient-id="#{$target.attr('data-patient-id')}"></div>""")
-        .append($target.find('td:eq(3)').clone())
-        .insertAfter('#main table')
+
+  dropOptions = 
+    tolerance: 'pointer'
+    hoverClass: 'drop-hover'
+    drop: drop
+
+  divHelper = (event) ->
+    $target = $(event.target).closest('tr')
+    $("""<div class="dragging" data-patient-id="#{$target.attr('data-patient-id')}"></div>""")
+      .append($target.find('td:eq(3)').clone())
+      .insertAfter('#main table')
 
   $('#main table tr').draggable
-    helper: divhelper
+    helper: divHelper
     distance: 5
     cursor: 'move'
     cursorAt:
@@ -47,7 +38,20 @@ jQuery ($) ->
       left: -5
     revert: 'invalid'
 
-  $('#sidebar ul li a').droppable
-    tolerance: 'pointer'
-    hoverClass: 'drop-hover'
-    drop: drop
+  $('#sidebar ul li a').droppable(dropOptions)
+  
+  $('#new_own_patient_list').bind
+    'ajax:before': (event) ->
+      $('input[type="submit"]', event.target).attr 'disabled', 'true'
+      #disable submit button
+    'ajax:success': (event, data) ->
+      $('.error', event.target).removeClass 'error'
+      $('#list-messages').html ''
+      $newList = $("""<li><a href="/users/#{data['user_id']}/patient_lists/#{data['id']}" data-patient-list-id="#{data['id']}">#{data['name']}</a></li>""")
+      $('a', $newList).droppable(dropOptions)
+      $newList.appendTo('#patient-list-index')
+    'ajax:error': (event, data) ->
+      $('#list-messages').text JSON.parse(data['responseText'])['name']
+      $('#new-list-name', event.target).addClass 'error'
+    'ajax:complete': (event) ->
+      $('input[type="submit"]', event.target).removeAttr 'disabled'
