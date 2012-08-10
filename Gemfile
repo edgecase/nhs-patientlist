@@ -40,5 +40,7 @@ group :development, :test do
   gem 'guard'
   gem 'rb-fsevent'
   gem 'guard-livereload'
+  gem 'guard-rspec'
+  gem 'guard-jasmine'
   gem 'pry-rails'
 end
