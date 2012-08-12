@@ -1,7 +1,9 @@
-jQuery ($) ->
-  drop = (event, ui) ->
+class MembershipController
+  receiveDrop: (event, ui) =>
     patientListId = $(event.target).attr 'data-patient-list-id'
     patientId     = $(ui.helper).attr 'data-patient-id'
+    @create patientListId, patientId
+  create: (patientListId, patientId) ->
     $.ajax
       url: "<%= Rails.application.routes.url_helpers.memberships_path %>"
       type: 'post'
@@ -12,25 +14,29 @@ jQuery ($) ->
           membership:
             patient_list: patientListId
           patient_id:   patientId
-      error: (json) ->
-        if json.responseText.match /already/
-          alert "Patient is already on the list"
-        else
-          alert "Could not add patient to list"
+      error: @onError
+  onError: (json) ->
+    if json.responseText.match /already/
+      alert "Patient is already on the list"
+    else
+      alert "Could not add patient to list"
 
+jQuery ($) ->
+  membershipController = new MembershipController
   dropOptions = 
     tolerance: 'pointer'
     hoverClass: 'drop-hover'
-    drop: drop
+    drop: membershipController.receiveDrop
 
-  divHelper = (event) ->
+  # provide something to drag
+  dragDivHelper = (event) ->
     $target = $(event.target).closest('tr')
     $("""<div class="dragging" data-patient-id="#{$target.attr('data-patient-id')}"></div>""")
       .append($target.find('td:eq(3)').clone())
       .insertAfter('#main table')
 
   $('#main table tr').draggable
-    helper: divHelper
+    helper: dragDivHelper
     distance: 5
     cursor: 'move'
     cursorAt:
@@ -39,7 +45,8 @@ jQuery ($) ->
     revert: 'invalid'
 
   $('#sidebar ul li a').droppable(dropOptions)
-  
+
+  # rails ujs handlers for patient list creation
   $('#new_own_patient_list').bind
     'ajax:before': (event) ->
       $('input[type="submit"]', event.target).attr 'disabled', 'true'
