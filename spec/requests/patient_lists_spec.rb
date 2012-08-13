@@ -69,15 +69,11 @@ describe "Patient lists" do
       find("table").should have_content "Rita"
     end
     
-    it "can have a patient added to it" do
+    it "can have a patient added to it", js: true do
       patient2 = Patient.make!(firstnames: "Joe", lastname:"O'Really", id: 1234)
       adm2     = Admission.make!(currward: "Renal", admstatus:  "Admitted", patient: patient2, admpid: patient2.id)
-      visit patient_path(patient2)
-      within("#patient-lists") do
-        select "Inpatients", from: 'membership_patient_list'
-        click_button "add-to-list"
-      end
-      find("#patient-lists").should have_content "Inpatients"
+      visit root_path
+      page.find(:xpath, '//table//tr[@data-patient-id="1234"]').drag_to(page.find(:xpath, '//*[@id="patient-list-index"]/li/a'))
       visit user_patient_list_path current_user, my_list
       find("table").should have_content "Joe"
     end
