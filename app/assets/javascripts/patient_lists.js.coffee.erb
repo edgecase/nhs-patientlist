@@ -23,20 +23,20 @@ class MembershipController
 
 jQuery ($) ->
   membershipController = new MembershipController
-  dropOptions = 
+  dropOptions =
     tolerance: 'pointer'
     hoverClass: 'drop-hover'
     drop: membershipController.receiveDrop
 
   # provide something to drag
-  dragDivHelper = (event) ->
+  patientDragHelper = (event) ->
     $target = $(event.target).closest('tr')
-    $("""<div class="dragging" data-patient-id="#{$target.attr('data-patient-id')}"></div>""")
-      .append($target.find('td:eq(3)').clone())
+    $(Templates.patientHelper({ patientId: $target.attr('data-patient-id') }))
+      .append( $target.find('td:eq(3)').clone() )
       .insertAfter('#main table')
 
   $('#main table tr').draggable
-    helper: dragDivHelper
+    helper: patientDragHelper
     distance: 5
     cursor: 'move'
     cursorAt:

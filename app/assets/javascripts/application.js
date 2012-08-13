@@ -15,4 +15,11 @@
 //= require jquery_ujs
 //= require underscore
 //= require twitter/bootstrap
-//= require_tree .
+// 
+//= require bootstrap.js.coffee
+//= require layout_templates.js.coffee
+//= require patients
+//= require patient_lists
+//= require risk_level
+//= require to_do_items
+
