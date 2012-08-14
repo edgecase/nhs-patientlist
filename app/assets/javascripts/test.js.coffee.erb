@@ -1,0 +1,12 @@
+# create a namespace on which to hang our classes-under-test
+# provides a helper to register classes
+
+window._test =
+  testEnvP: <%= Rails.env.test? || Rails.env.development? %>
+  register: (registrant) ->
+    if @testEnvP
+      unless registrant.name?
+        console.log "_test.register(): class could not be registered"
+        return
+      window._test[registrant.name] = registrant
+

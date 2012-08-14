@@ -18,6 +18,7 @@
 // 
 //= require bootstrap.js.coffee
 //= require layout_templates.js.coffee
+//= require test
 //= require patients
 //= require patient_lists
 //= require risk_level
