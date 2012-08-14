@@ -14,12 +14,17 @@ class MembershipController
           membership:
             patient_list: patientListId
           patient_id:   patientId
+      success: @onSuccess
       error: @onError
+  onSuccess: (json) ->
+    #console.log "success"
   onError: (json) ->
     if json.responseText.match /already/
       alert "Patient is already on the list"
     else
       alert "Could not add patient to list"
+
+_test.register MembershipController
 
 jQuery ($) ->
   membershipController = new MembershipController
