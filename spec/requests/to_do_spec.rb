@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe "Todos", :js => true do
-  let(:user) {User.make!}
-  let(:patient){Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123)}
-  let(:admission){Admission.make!(:currward=>'RENAL', :admstatus => "Admitted", :patient=>patient)}
+  let(:user)       { User.make!(email: "test@example.com") }
+  let(:other_user) { User.make! }
+  let(:patient)    { Patient.make!(:hospno=>"4567", :firstnames=>"Rita", :lastname=>"O'Really", :allergies=>"toes", :pastmedhx=>"Grouts", :id=>123)}
+  let(:admission)  { Admission.make!(:currward=>'RENAL', :admstatus => "Admitted", :patient=>patient)}
 
   before do
     patient.save
