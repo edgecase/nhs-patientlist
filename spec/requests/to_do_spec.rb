@@ -30,7 +30,7 @@ describe "Todos", :js => true do
   end
   describe "an existing Todo" do
     before do
-      todo = patient.to_do_items.create(:description=>'starts as todo')
+      todo = patient.to_do_items.create(description: 'starts as todo')
       visit edit_patient_path(patient.id)
     end
 
@@ -52,5 +52,14 @@ describe "Todos", :js => true do
       visit history_patient_path(patient.id)
       find("table").should have_content('@example.com')
     end
+    it "indicates it was created by the current user" do
+      page.should have_css '.mine',  text: 'starts as todo'
+    end
+    it "omits the css indicator when it wasn't created by the current user" do
+      current_user = other_user
+      other_todo = patient.to_do_items.create(description: 'other todo')
+      page.should_not have_css '.mine', text: 'other todo'
+    end
+
   end
 end

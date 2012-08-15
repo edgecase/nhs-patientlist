@@ -1,4 +1,4 @@
-<li>
+<li class="<%= current_user.id == to_do_item.creator ? 'mine':'' %>">
 <%= to_do_item.description %>
 <%= form_tag patient_to_do_item_path(patient, to_do_item), method: :put do %>
   <% if item_state == 'todo' %>

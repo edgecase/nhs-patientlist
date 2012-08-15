@@ -1,7 +1,6 @@
 <header>
-<h1><%= full_name(patient) %></h1>
-<%= link_to back_link_text, current_patients_path(:ward=>ward) %>
-
+  <h1><%= full_name(patient) %></h1>
+  <%= link_to back_link_text, current_patients_path(:ward=>ward) %>
 </header>
 <div id="todo-section">
   <%= simple_form_for :to_do_item, :url=>patient_to_do_items_path(patient.id) do |f| %>
@@ -13,7 +12,6 @@
   <ul id="todo" class="todo-list">
     <%= render patient.to_dos, :item_state =>'todo' %>
   </ul>
-
 </div>
 
 <div id="pending-section">
@@ -21,5 +19,4 @@
   <ul id="pending" class="todo-list">
     <%= render patient.pendings, :item_state =>'pending' %>
   </ul>
-
 </div>
