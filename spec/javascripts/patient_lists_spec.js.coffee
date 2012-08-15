@@ -16,6 +16,9 @@ describe "MembershipController", ->
   it "calls @onSuccess when it's sucessful", ->
     spyOn(subj, 'onSuccess')
     spyOn($, 'ajax').andCallFake((params)->
+      expect(params.url).toEqual('/memberships')
+      expect(params.type).toMatch(/post/i)
+      expect(params.dataType).toMatch(/json/i)
       params.success()
     )
     subj.create(1, 123);
