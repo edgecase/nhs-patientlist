@@ -18,7 +18,7 @@ describe PatientListsController do
       current_user.patient_lists.find_by_name(outpatients).should_not be_nil
     end
     it "handles not creating an invalid patient list" do
-      expect { post :create, :own_patient_list => {} }.to change(PatientList, :count).by 0
+      expect { post :create, :own_patient_list => {}, :user_id => current_user.id }.to change(PatientList, :count).by 0
     end
   end
   describe '#destroy' do
