@@ -11,3 +11,12 @@ ul.todo-list {
     }
   }
 }
+.drag-handle {
+  font-size: 1.2em;
+  opacity: .1;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+tr:hover .drag-handle {
+  opacity: .7;
+}
