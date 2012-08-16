@@ -6,4 +6,4 @@ require File.expand_path('../config/application', __FILE__)
 
 NhsPatientlist::Application.load_tasks
 
-task default: ['spec', 'guard:jasmine']
+#task default: ['spec', 'guard:jasmine']
