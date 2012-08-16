@@ -46,7 +46,7 @@ describe "Todos", :js => true do
         page.should have_content('starts as todo')
         click_button "Done"
       end
-      page.should have_no_content('starts as todo')
+      find("#done").should have_content('starts as todo')
     end
     it "leaves an audit trail when created" do
       visit history_patient_path(patient.id)

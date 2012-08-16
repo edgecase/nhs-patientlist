@@ -20,3 +20,13 @@
     <%= render patient.pendings, :item_state =>'pending' %>
   </ul>
 </div>
+
+<div id="done-section">
+  <h2><a href="#">Done</a></h2>
+  <div>
+    <ul id="done" class="todo-list">
+      <%= render patient.done_items, :item_state =>'' %>
+    </ul>
+  </div>
+  </div>
+</div>

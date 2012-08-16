@@ -18,5 +18,10 @@ describe Patient do
     it "displays items in state pending" do
       patient.pendings.map(&:description).sort.should == ["Do 2"]
     end
+
+    it "displays items that are done" do
+      last_item.update_attribute :status, 'done'
+      patient.done_items.map(&:description).sort.should == ["Do 2"]
+    end
   end
 end
