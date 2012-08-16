@@ -12,7 +12,9 @@ ul.todo-list {
   }
 }
 .drag-handle {
-  font-size: 1.2em;
+  font-size: 1.4em;
+  font-weight: bold;
+  cursor:move;
   opacity: .1;
   -webkit-transition: opacity .5s;
   transition: opacity .5s;
