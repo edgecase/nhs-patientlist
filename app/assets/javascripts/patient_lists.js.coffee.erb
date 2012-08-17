@@ -59,6 +59,7 @@ jQuery ($) ->
     'ajax:success': (event, data) ->
       $('.error', event.target).removeClass 'error'
       $('#list-messages').html ''
+      $('#new-list-name').val ''
       $newList = $("""<li><a href="/users/#{data['user_id']}/patient_lists/#{data['id']}" data-patient-list-id="#{data['id']}">#{data['name']}</a></li>""")
       $('a', $newList).droppable(dropOptions)
       $newList.appendTo('#patient-list-index')
