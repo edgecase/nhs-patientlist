@@ -26,7 +26,7 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   task :seed, :roles => :app do
-    run "cd #{release_path}/config && rake db:seed"
+    run "cd #{release_path} && rake db:seed"
   end
 end
 
