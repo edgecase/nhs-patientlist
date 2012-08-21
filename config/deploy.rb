@@ -25,11 +25,17 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+  task :seed, :roles => :app do
+    run "cd #{release_path}/config && rake db:seed"
+  end
 end
 
 task :symlink_config_files, :roles => :app do
   run "cd #{release_path}/config && rm -f database.yml && ln -s #{shared_path}/config/database.yml"
 end
+
+
+
 after 'deploy:update_code', 'symlink_config_files'
 
 def remote_file_exists?(full_path)
