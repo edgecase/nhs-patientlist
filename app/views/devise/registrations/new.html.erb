@@ -5,8 +5,7 @@
 
   <div class="inputs">
     <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.association :grade, :as => :select, :label_method => :title,
-    :default => :first %>
+    <%= f.association :grade, :as => :select, :label_method => :title, :default => :first %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
   </div>
