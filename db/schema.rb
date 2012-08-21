@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(:version => 20120809141153) do
   create_table "eventcodes", :id => false, :force => true do |t|
     t.string "eventcode",   :limit => 3
     t.string "eventname",   :limit => 60
-    t.string "supportflag", :limit => 0
+    t.string "supportflag", :limit => 1
   end
 
   add_index "eventcodes", ["eventcode"], :name => "eventcode", :unique => true
