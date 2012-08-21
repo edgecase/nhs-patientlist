@@ -17,13 +17,17 @@ NhsPatientlist::Application.routes.draw do
       get 'history'
       post 'update_risk_level'
     end
-    resources :to_do_items do
+    resources :to_do_items, :controller => "patients/to_do_items" do
       member do
         put 'update'
       end
     end
   end
 
+
+#  resources :to_do_items do
+#    resources :handovers :only => [:new, :create]
+#  end
 
   match 'memberships' => 'memberships#create', via: :post
   match 'memberships/:patient_id/:patient_list_id' => 'memberships#destroy', via: :delete

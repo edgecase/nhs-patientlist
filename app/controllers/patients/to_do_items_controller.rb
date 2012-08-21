@@ -1,6 +1,6 @@
-module Patients; end
+module Patients
 
-class Patients::ToDoItemsController < ApplicationController
+class ToDoItemsController < ApplicationController
   def create
     patient.to_do_items.create!(params[:to_do_item])
     redirect_to edit_patient_path(patient)
@@ -16,3 +16,5 @@ class Patients::ToDoItemsController < ApplicationController
   expose(:to_do_item)
 end
 
+
+end
