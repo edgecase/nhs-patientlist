@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809141153) do
+ActiveRecord::Schema.define(:version => 20120821091119) do
 
   create_table "adms", :primary_key => "adm_id", :force => true do |t|
     t.timestamp "admstamp",                                             :null => false
@@ -120,6 +120,12 @@ ActiveRecord::Schema.define(:version => 20120809141153) do
 
   add_index "eventcodes", ["eventcode"], :name => "eventcode", :unique => true
 
+  create_table "grades", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "memberships", :force => true do |t|
     t.integer "patient_list_id"
     t.integer "patient_id"
@@ -208,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20120809141153) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "grade_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

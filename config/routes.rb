@@ -1,4 +1,6 @@
 NhsPatientlist::Application.routes.draw do
+  resources :grades
+
   devise_for :users
 
   resources :users, only: [] do
