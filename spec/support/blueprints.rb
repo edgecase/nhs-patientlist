@@ -15,9 +15,11 @@ ToDoItem.blueprint do
 end
 
 User.blueprint do
-  email { "test-#{sn}@example.com" }
+  email    { "test-#{sn}@example.com" }
   password { "password" }
+  grade    { Grade.find_or_create_by_title "Foundation Year 1" }
 end
+
 PatientList.blueprint do
 end
 
