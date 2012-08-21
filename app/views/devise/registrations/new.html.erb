@@ -5,7 +5,8 @@
 
   <div class="inputs">
     <%= f.input :email, :required => true, :autofocus => true %>
-    <%= f.input :grade_id, :collection => Grade.all, :value_method => :id, :label_method => :title %>
+    <%= f.association :grade, :as => :select, :label_method => :title,
+    :default => :first %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
   </div>
@@ -14,5 +15,5 @@
     <%= f.button :submit, "Sign up" %>
   </div>
 <% end %>
-
+ 
 <%= render "links" %>
