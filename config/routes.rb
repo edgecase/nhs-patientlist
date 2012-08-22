@@ -25,7 +25,7 @@ NhsPatientlist::Application.routes.draw do
   end
 
   resources :to_do_items do
-    resources :handovers, :only => [:new, :create]
+    resources :handovers, :only => [:new, :create], :controller => "to_do_items/handovers"
   end
 
   match 'memberships' => 'memberships#create', via: :post
