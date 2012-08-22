@@ -23,3 +23,8 @@ end
 PatientList.blueprint do
 end
 
+Grade.blueprint do
+  title { "Foundation Year 1" }
+end
+
+

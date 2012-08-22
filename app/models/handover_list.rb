@@ -1,3 +1,3 @@
 class HandoverList < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :shift_date
 end
