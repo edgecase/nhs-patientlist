@@ -1,6 +1,8 @@
 class ToDoItem < ActiveRecord::Base
   audited
 
+  belongs_to :patient
+
   attr_accessible :description, :patient_id, :status
   validates :status,
     inclusion: {in: %w{todo pending done} }

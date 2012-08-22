@@ -1,25 +1,25 @@
 <h2>Handover Task</h2>
 
-<p>Task: <%= to_do_item.description %><p>
+<p>Patient: <%= link_to patient.name, patient %></p>
+<p>To Do Item: <%= link_to to_do_item.description, edit_patient_path(patient) %><p>
 
+
+<h3>Team</h3>
 <p>
-  Team
-  <%= label_tag "Clinical" %>
-  <%= radio_button_tag 'team', 'clinical', true %>
-  <%= label_tag "Surgical" %>
-  <%= radio_button_tag 'team', 'surgical' %>
+  Clinical <%= radio_button_tag 'team', 'clinical', true %>
+  Surgical <%= radio_button_tag 'team', 'surgical' %>
 </p>
 
-<p>
-  <%= label_tag :date %>
-  <%= text_field_tag :date %>
-</p>
 
-<p>
-  <%= label_tag :grade %>
-  <%= select_tag "grade",
-      options_from_collection_for_select(Grade.all, "id", "title"),
-      :include_blank => false %>
-</p>
-
-<p><%= submit_tag "Handover task" %></p>
+<%= simple_form_for handover, :url => to_do_item_handovers_path(to_do_item, handover) do |f| %>
+  <p>
+    <%= f.label "Shift date (yyyy-mm-dd)" %>
+    <%= text_field_tag :shift_date, Date.today, :class => :date_input %>
+  </p>
+  
+  <p>
+    <%= f.association :grade, :as => :select, :label_method => :title,:include_blank => false %>
+  </p>
+  
+  <p><%= f.submit %></p>
+<% end %>

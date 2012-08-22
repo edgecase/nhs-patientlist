@@ -1,0 +1,2 @@
+class HandoverListsController < ApplicationController
+end
