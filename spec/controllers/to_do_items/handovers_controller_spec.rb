@@ -8,8 +8,11 @@ describe ToDoItems::HandoversController do
   let(:to_do_item) { ToDoItem.make! }
   
   describe "GET new" do
-    it "renders the new handover page" do
+    before do
       get :new, :to_do_item_id => to_do_item.to_param
+    end
+    
+    it "renders the new handover page" do
       response.should render_template("new")
     end
   end

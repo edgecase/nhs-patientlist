@@ -1,1 +1,25 @@
-<h1>Handover</h1>
+<h2>Handover Task</h2>
+
+<p>Task: <%= to_do_item.description %><p>
+
+<p>
+  Team
+  <%= label_tag "Clinical" %>
+  <%= radio_button_tag 'team', 'clinical', true %>
+  <%= label_tag "Surgical" %>
+  <%= radio_button_tag 'team', 'surgical' %>
+</p>
+
+<p>
+  <%= label_tag :date %>
+  <%= text_field_tag :date %>
+</p>
+
+<p>
+  <%= label_tag :grade %>
+  <%= select_tag "grade",
+      options_from_collection_for_select(Grade.all, "id", "title"),
+      :include_blank => false %>
+</p>
+
+<p><%= submit_tag "Handover task" %></p>

@@ -1,4 +1,3 @@
 class ToDoItems::HandoversController < ApplicationController
-  def new
-  end
+  expose(:to_do_item) { ToDoItem.find(params[:to_do_item_id]) }
 end
