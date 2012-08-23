@@ -6,7 +6,8 @@
 <%= simple_form_for handover, :url => to_do_item_handovers_path(to_do_item, handover) do |f| %>
   <h3>Team</h3>
   <p>
-    <%= f.association :team, :collection => Team.on_call, :as => :radio_buttons %>
+    <%= f.association :team, :collection => Team.on_call.order(:name),
+    :as => :radio_buttons, :label => false %>
   </p>
 
   <p>
