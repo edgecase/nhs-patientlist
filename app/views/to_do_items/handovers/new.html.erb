@@ -1,17 +1,14 @@
-<h2>Handover Task</h2>
+<h2>Handover Task to On Call Team</h2>
 
 <p>Patient: <%= link_to patient.name, patient %></p>
 <p>To Do Item: <%= link_to to_do_item.description, edit_patient_path(patient) %><p>
 
-
-<h3>Team</h3>
-<p>
-  Clinical <%= radio_button_tag 'team', 'clinical', true %>
-  Surgical <%= radio_button_tag 'team', 'surgical' %>
-</p>
-
-
 <%= simple_form_for handover, :url => to_do_item_handovers_path(to_do_item, handover) do |f| %>
+  <h3>Team</h3>
+  <p>
+    <%= f.association :team, :collection => Team.on_call, :as => :radio_buttons %>
+  </p>
+
   <p>
     <%= f.label "Shift date (yyyy-mm-dd)" %>
     <%= text_field_tag :shift_date, Date.today, :class => :date_input %>

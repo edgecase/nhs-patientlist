@@ -15,5 +15,5 @@ describe Shift do
     it "returns the on call shift" do
       Shift.on_call.should == on_call_shift
     end
-  end 
+  end
 end

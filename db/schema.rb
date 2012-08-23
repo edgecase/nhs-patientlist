@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823095230) do
+ActiveRecord::Schema.define(:version => 20120823104827) do
 
   create_table "adms", :primary_key => "adm_id", :force => true do |t|
     t.timestamp "admstamp",                                             :null => false
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20120823095230) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "grade_id"
+    t.integer  "team_id"
   end
 
   add_index "handovers", ["handover_list_id"], :name => "index_handovers_on_handover_list_id"
