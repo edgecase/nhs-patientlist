@@ -7,8 +7,9 @@ describe ToDoItems::HandoversController do
 
   let(:patient)    { Patient.make! } 
   let(:grade)      { Grade.make! }
+  let(:team)       { Team.make!  }
   let(:to_do_item) { ToDoItem.make! :patient => patient }
-  
+
   describe "GET new" do
     before do
       get :new, :to_do_item_id => to_do_item.to_param
@@ -19,12 +20,16 @@ describe ToDoItems::HandoversController do
     end
   end
 
-  describe "POST create" do
+  describe "post create" do
     let(:valid_attributes) do
       {
         :to_do_item_id => to_do_item.to_param,
-        :shift_date => "2012-08-15",
-        :handover => {:grade_id => grade.to_param}
+        :handover   => {
+          :to_do_item_id => to_do_item.to_param,
+          :grade_id      => grade.to_param,
+          :team_id       => team.id,
+          :shift_date    => "2012-08-15"
+        }
       }
     end
     
@@ -46,6 +51,16 @@ describe ToDoItems::HandoversController do
         Handover.last.handover_list.should == HandoverList.last
       end
 
+      it "assigns to_do_item to handover" do
+        post :create, valid_attributes
+        Handover.last.to_do_item.should == to_do_item
+      end
+
+      it "assigns a team to the handover" do
+        post :create, valid_attributes
+        Handover.last.team.should == team
+      end
+      
       it "assigns a grade to the handover" do
         post :create, valid_attributes
         Handover.last.grade.should == grade

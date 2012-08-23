@@ -5,6 +5,8 @@
     <%= submit_tag "Pending" %>
   <% end %>
   <%= submit_tag "Done" %>
-  <%= link_to "Handover", new_to_do_item_handover_path(to_do_item) %>
+  <% if !to_do_item.handed_over? %>
+    <%= link_to "Handover", new_to_do_item_handover_path(to_do_item) %>
+  <% end %>
 <% end %>
 </li>

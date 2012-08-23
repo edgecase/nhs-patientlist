@@ -5,7 +5,6 @@ class ToDoItems::HandoversController < ApplicationController
   expose(:grade)
 
   def create
-    handover.handover_list = HandoverList.new(:shift_date => params[:shift_date])
     if handover.save
       redirect_to edit_patient_path(patient), :notice => "Task handed over"
     else

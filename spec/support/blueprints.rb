@@ -2,13 +2,13 @@ require 'machinist/active_record'
 
 
 Patient.blueprint do
-  patstamp {Time.gm(2012, 07, 13, 23, 5)}
-  hospno{"456"}
+  patstamp { Time.gm(2012, 07, 13, 23, 5) }
+  hospno   { "456" }
 end
 
 Admission.blueprint do
-  patient {Patient.make}
-  admstamp {Time.gm(2012, 07, 13, 23, 5)}
+  patient  { Patient.make }
+  admstamp { Time.gm(2012, 07, 13, 23, 5) }
 end
 
 ToDoItem.blueprint do
@@ -27,4 +27,21 @@ Grade.blueprint do
   title { "Foundation Year 1" }
 end
 
+Shift.blueprint do
+  name { "On Call" }
+end
 
+Team.blueprint do
+  name  { "A-Team" }
+  shift { Shift.make!  }
+end
+
+HandoverList.blueprint do
+  shift_date { Time.gm(2012,8,15,0,0).to_date  }
+end
+
+Handover.blueprint do
+  team          { Team.make! }
+  grade         { Grade.make! }
+  handover_list { HandoverList.make! }
+end
