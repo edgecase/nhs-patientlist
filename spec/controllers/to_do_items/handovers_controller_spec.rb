@@ -61,5 +61,20 @@ describe ToDoItems::HandoversController do
         flash[:notice].should == "Task handed over"
       end
     end
+
+    context "on error" do
+      before do
+        Handover.any_instance.stub(:save => false)
+        post :create, valid_attributes
+      end
+
+      it "renders new" do
+        response.should render_template(:new)
+      end
+
+      it "displays an error" do
+        flash[:alert].should == "Could not hand task over"
+      end
+    end
   end
 end

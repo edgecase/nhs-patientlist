@@ -6,7 +6,11 @@ class ToDoItems::HandoversController < ApplicationController
 
   def create
     handover.handover_list = HandoverList.new(:shift_date => params[:shift_date])
-    handover.save
-    redirect_to edit_patient_path(patient), :notice => "Task handed over"
+    if handover.save
+      redirect_to edit_patient_path(patient), :notice => "Task handed over"
+    else
+      flash[:alert] = "Could not hand task over"
+      render :new
+    end
   end
 end

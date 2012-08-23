@@ -47,12 +47,12 @@
           <% end %>
         </div>
         <div id="main" class="span10">
-          <% if notice %>
-            <div class="messages alert">
-              <%= notice %>
-            </div>
+          <% flash.each do |key, value| %>
+            <p class="flash messages alert" id="flash_<% key %>"><%= value %></p>
           <% end %>
+
           <%= yield %>
+
         </div>
       </div>
     </div>
