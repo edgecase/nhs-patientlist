@@ -1,3 +1,8 @@
 class HandoverList < ActiveRecord::Base
-  attr_accessible :shift_date
+  has_many   :handovers
+  belongs_to :team
+
+  validates_presence_of :team_id, :shift_date
+  
+  attr_accessible :team_id, :shift_date
 end

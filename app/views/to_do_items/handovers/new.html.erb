@@ -5,20 +5,12 @@
 
 <%= simple_form_for handover, :url => to_do_item_handovers_path(to_do_item, handover) do |f| %>
   <%= f.hidden_field :to_do_item_id, :value => to_do_item.id %>
-  <h3>Team</h3>
-  <p>
-    <%= f.association :team, :collection => Team.on_call.order(:name),
-    :as => :radio_buttons, :label => false %>
-  </p>
 
-  <p>
-    <%= f.label "Shift date (yyyy-mm-dd)" %>
-    <%= text_field_tag :shift_date, Date.today, :class => :date_input %>
-  </p>
+  <%= simple_fields_for handover.handover_list do |list_form| %>
+    <p><%= list_form.association :team, :collection => Team.on_call.order(:name), :as => :radio_buttons %></p>
+    <p><%= list_form.input :shift_date, :value => Date.today %></p>
+  <% end %>
   
-  <p>
-    <%= f.association :grade, :as => :select, :label_method => :title, :include_blank => false %>
-  </p>
-  
+  <p><%= f.association :grade, :as => :select, :label_method => :title, :include_blank => false %></p>
   <p><%= f.submit %></p>
 <% end %>
