@@ -23,4 +23,4 @@
 //= require patient_lists
 //= require risk_level
 //= require to_do_items
-
+//= require jquery.ui.datepicker

@@ -8,7 +8,7 @@
 
   <%= simple_fields_for handover.handover_list do |list_form| %>
     <p><%= list_form.association :team, :collection => Team.on_call.order(:name), :as => :radio_buttons %></p>
-    <p><%= list_form.input :shift_date, :value => Date.today %></p>
+    <p><%= list_form.input :shift_date, :value => Date.today, :as => :string, :input_html => {:class => "date-picker"} %></p>
   <% end %>
   
   <p><%= f.association :grade, :as => :select, :label_method => :title, :include_blank => false %></p>
