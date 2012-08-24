@@ -38,7 +38,6 @@
           <p>
             <%= link_to "history", history_patient_path(patient.patient_id, :ward=>nil) %>
           </p>
-          <p><%= link_to "handover", "#" %></p>
           <% if controller_name == 'patient_lists' %>
             <p><%= link_to "remove from this list", url_for(:action => :destroy, :controller => :memberships,
                                                             :patient_id      => patient.patient_id,
