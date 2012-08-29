@@ -276,7 +276,7 @@ DEPENDENCIES
   mysql
   poltergeist (~> 0.6.0)
   pry-rails (~> 0.1.6)
-  rails (~> 3.2.3)
+  rails (~> 3.2.8)
   rb-fsevent (~> 0.9.1)
   rspec-rails (~> 2.9.0)
   sass-rails (~> 3.2.3)
