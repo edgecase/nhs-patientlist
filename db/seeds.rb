@@ -39,7 +39,11 @@ end
 #
 with_header "Creating defualt on-call teams" do
   ["Clinical","Surgical"].each do |team_name|
-    puts "  #{team_name}"
-    Team.find_or_create_by_name team_name
+    Shift.all.each do |shift|
+      puts " #{shift.name}: #{team_name}"
+      team = { name: team_name, shift_id: shift.id }
+      t = Team.where(team).first || Team.create(team)
+      t.save
+    end
   end
-end   
+end
