@@ -29,7 +29,7 @@ end
 gem 'capistrano'
 
 group :development, :test do
-  gem "ecrails_templates", :git => "git@github.com:edgecase/ecrails_templates.git"
+  gem "ecrails_templates", :git => "https://github.com/edgecase/ecrails_templates.git"
   gem "rake"
   gem "rspec-rails",       '~> 2.9.0'
   gem "jasminerice",       '~> 0.0.9'

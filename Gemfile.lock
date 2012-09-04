@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:edgecase/ecrails_templates.git
+  remote: https://github.com/edgecase/ecrails_templates.git
   revision: a1747b81c5fe3d31b603a262cd7991421f99055a
   specs:
     ecrails_templates (0.0.1)
