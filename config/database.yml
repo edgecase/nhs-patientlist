@@ -13,4 +13,4 @@ test:
   username: root
   password:
   socket: /tmp/mysql.sock
-
+  <%= File.file?('/tmp/mysql.sock') ? 'socket: /tmp/mysql.sock' : 'host: 127.0.0.1' %>
