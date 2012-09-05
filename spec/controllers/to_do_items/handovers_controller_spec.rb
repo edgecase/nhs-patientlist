@@ -26,7 +26,9 @@ describe ToDoItems::HandoversController do
         :to_do_item_id => to_do_item.to_param,
         :handover   => {
           :to_do_item_id => to_do_item.to_param,
-          :grade_id      => grade.to_param,
+          :grade_id      => grade.to_param
+        },
+        :handover_list => {
           :team_id       => team.id,
           :shift_date    => "2012-08-15"
         }
@@ -56,11 +58,6 @@ describe ToDoItems::HandoversController do
         Handover.last.to_do_item.should == to_do_item
       end
 
-      it "assigns a team to the handover" do
-        post :create, valid_attributes
-        Handover.last.team.should == team
-      end
-      
       it "assigns a grade to the handover" do
         post :create, valid_attributes
         Handover.last.grade.should == grade

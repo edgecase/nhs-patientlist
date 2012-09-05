@@ -38,10 +38,10 @@ end
 
 HandoverList.blueprint do
   shift_date { Time.gm(2012,8,15,0,0).to_date  }
+  team       { Team.make! }
 end
 
 Handover.blueprint do
-  team          { Team.make! }
   grade         { Grade.make! }
   handover_list { HandoverList.make! }
 end
