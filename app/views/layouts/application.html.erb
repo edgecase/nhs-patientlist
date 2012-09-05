@@ -23,7 +23,8 @@
       <div class="container">
         <% if user_signed_in? %> 
           <ul class="nav pull-left">
-            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Home",  root_path %></li>
+            <li><%= link_to "Teams", teams_path %></li>
           </ul>
           <ul class="nav pull-right">
             <li><p class="navbar-text"><%= current_user.email %></p></li>
