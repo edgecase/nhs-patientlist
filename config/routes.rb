@@ -30,6 +30,8 @@ NhsPatientlist::Application.routes.draw do
     resources :handovers, :only => [:new, :create], :controller => "to_do_items/handovers"
   end
 
+  resources :teams, :only => [:index] 
+    
   resources :handover_lists 
 
   match 'memberships' => 'memberships#create', via: :post
