@@ -4,6 +4,7 @@ rvm:
 env:
   - DB=mysql
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:setup spec
+  - RAILS_ENV=test bundle exec rake --trace spec
 before_script:
   - mysql -e 'create database `nhs-patientlist-test`;'
+  - bundle exec rake --trace db:setup db:test:prepare
