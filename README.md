@@ -10,4 +10,4 @@ Patient List is in the process of being developed into an application that NHS t
 
 For more information about the system, please see [our wiki](https://github.com/edgecase/nhs-patientlist/wiki/Patient-List-Wiki).
 
-[![Build Status](https://secure.travis-ci.org/edgecase/nhs-project-list.png)](http://travis-ci.org/edgecase/nhs-patientlist)
+[![Build Status](https://secure.travis-ci.org/edgecase/nhs-patientlist.png)](http://travis-ci.org/edgecase/nhs-patientlist)
