@@ -5,4 +5,7 @@
   <div class="span2">
     <p><%= team.shift.name %></p>
   </div>
+  <% simple_form_for team.team_member do |f| %>
+    f.submit "Join"
+  <% end %> 
 </div>
