@@ -6,3 +6,4 @@ class TeamMembership < ActiveRecord::Base
 
   attr_accessible :user, :team
 end
+

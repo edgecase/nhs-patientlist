@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-class TeamMembershipsController
+class TeamMembersController
   skip_before_filter :authenticate_user!
 end
 
-describe TeamMembershipsController do
+describe TeamMembersController do
   describe "POST create" do
     let!(:user) { User.make! }
     let!(:team) { Team.make! }
@@ -27,5 +27,23 @@ describe TeamMembershipsController do
       post :create, valid_attributes
       flash[:notice].should == "You have joined '#{team.name}'"
     end
+
+    context "on error" do
+      before do
+        TeamMembership.any_instance.stub(:save => false)
+        ActiveModel::Errors.any_instance.stub(:full_messages => ["first error","second error"])
+      end
+
+      it "displays a flash" do
+        post :create, valid_attributes
+        flash[:alert].should == "Error joining team - first error, second error"
+      end
+
+      it "redirects to the teams index page" do
+        post :create, valid_attributes
+        response.should redirect_to(teams_path)
+      end
+    end
   end
 end
+
