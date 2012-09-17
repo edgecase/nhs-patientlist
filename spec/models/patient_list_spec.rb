@@ -37,5 +37,5 @@ describe PatientList do
       current_user.patient_lists.create(:name => outpatients)
     }.to change(PatientList, :count).by(0)
   end
-  
+
 end

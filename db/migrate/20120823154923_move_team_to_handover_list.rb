@@ -5,7 +5,7 @@ class MoveTeamToHandoverList < ActiveRecord::Migration
   end
 
   def down
-    add_column :handovers, :team_id, :integer    
+    add_column :handovers, :team_id, :integer
     remove_column    :handover_lists, :team_id
   end
 end

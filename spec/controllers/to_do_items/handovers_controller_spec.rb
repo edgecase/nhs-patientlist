@@ -5,7 +5,7 @@ describe ToDoItems::HandoversController do
     skip_before_filter :authenticate_user!
   end
 
-  let(:patient)    { Patient.make! } 
+  let(:patient)    { Patient.make! }
   let(:grade)      { Grade.make! }
   let(:team)       { Team.make!  }
   let(:to_do_item) { ToDoItem.make! :patient => patient }
@@ -14,7 +14,7 @@ describe ToDoItems::HandoversController do
     before do
       get :new, :to_do_item_id => to_do_item.to_param
     end
-    
+
     it "renders the new handover page" do
       response.should render_template("new")
     end
@@ -34,7 +34,7 @@ describe ToDoItems::HandoversController do
         }
       }
     end
-    
+
     context "when there is no handover list for the date specified" do
       it "creates a new handover" do
         expect {

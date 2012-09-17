@@ -4,5 +4,5 @@ class TeamMembership < ActiveRecord::Base
 
   validates_presence_of :user_id, :team_id
 
-  attr_accessible :user, :team  
+  attr_accessible :user, :team
 end

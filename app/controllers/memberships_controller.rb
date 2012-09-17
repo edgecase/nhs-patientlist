@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  
+
   def create
     list = current_user.patient_lists.find(params[:membership][:patient_list])
     begin

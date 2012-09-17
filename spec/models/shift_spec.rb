@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Shift do
   let!(:day_shift)     { Shift.create! :name => "Day" }
   let!(:on_call_shift) { Shift.create! :name => "On Call" }
- 
+
 
   describe ".day" do
     it "returns the day shift" do

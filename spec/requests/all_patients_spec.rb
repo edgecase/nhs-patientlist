@@ -11,7 +11,7 @@ describe "All patients" do
                                 :id=>123
                                 )
   }
-  
+
   let(:admission) { Admission.make!(
                                     :currward=>'RENAL',
                                     :admstatus => "Admitted",

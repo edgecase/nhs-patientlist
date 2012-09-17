@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration
     create_table :teams do |t|
       t.references :shift
       t.string :name
-      
+
       t.timestamps
     end
     add_index :teams, [:shift_id, :name], :unique => true

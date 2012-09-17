@@ -8,7 +8,7 @@ class ToDoItem < ActiveRecord::Base
   validates :status,
     inclusion: {in: %w{todo pending done} }
     # TODO: validate order of ops
-  
+
   def creator
     self.audits.where(action:'create').last.user_id
   end

@@ -29,10 +29,10 @@ describe "Patient lists" do
 
   it "does not display 'new list' on other users' lists" do
     visit user_patient_lists_path other_user
-    page.should_not have_css '#new-list' 
+    page.should_not have_css '#new-list'
   end
 
-  
+
   describe "a patient list" do
     before :each do
       my_list.patients << patient
@@ -58,17 +58,17 @@ describe "Patient lists" do
     end
 
     it "doesn't have a delete link if it's another user's list" do
-      other_list = other_user.patient_lists.create(:name => "Outpatients") 
+      other_list = other_user.patient_lists.create(:name => "Outpatients")
       visit user_patient_list_path other_user, other_list
       page.should_not have_content "Delete"
     end
-    
+
     it "can be viewed" do
       visit user_patient_list_path current_user, my_list
       page.should have_content("Inpatients")
       find("table").should have_content "Rita"
     end
-    
+
     it "can have a patient added to it", js: true do
       patient2 = Patient.make!(firstnames: "Joe", lastname:"O'Really", id: 1234)
       adm2     = Admission.make!(currward: "Renal", admstatus:  "Admitted", patient: patient2, admpid: patient2.id)
@@ -77,11 +77,11 @@ describe "Patient lists" do
       visit user_patient_list_path current_user, my_list
       find("table").should have_content "Joe"
     end
-    
+
     it "can have a patient removed from it" do
       visit user_patient_list_path current_user, my_list
       within(:xpath, '//table//tr[@data-patient-id="123"]') do
-        find('.remove').click 
+        find('.remove').click
       end
     end
 

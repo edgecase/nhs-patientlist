@@ -34,7 +34,7 @@ with_header "Creating shifts..." do
     Shift.find_or_create_by_name name
   end
 end
-  
+
 ## Teams
 #
 with_header "Creating defualt on-call teams" do

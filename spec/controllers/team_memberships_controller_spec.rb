@@ -11,7 +11,7 @@ describe TeamMembershipsController do
     let(:valid_attributes) do
       {:user_id => user.to_param, :team_id => team.to_param}
     end
-    
+
     it "creates a new team membership" do
       expect {
         post :create, valid_attributes

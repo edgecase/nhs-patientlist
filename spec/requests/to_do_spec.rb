@@ -30,7 +30,7 @@ describe "Todos", :js => true do
       click_button "Add"
       find("#todo").should have_content('Check pulse')
     end
-    
+
     it "can be created as 'pending'" do
       fill_in 'Description', :with => 'Check bp'
       select("Pending", from: "to_do_item_status")

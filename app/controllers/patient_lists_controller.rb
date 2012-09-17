@@ -8,7 +8,7 @@ class PatientListsController < ApplicationController
   expose(:user)
   expose(:user_patient_lists) { user.patient_lists }
   expose(:user_patient_list)
-  
+
   def create
     if own_patient_list.save
       respond_to do |format|
@@ -22,7 +22,7 @@ class PatientListsController < ApplicationController
       end
     end
   end
-  
+
   def update
     if own_patient_list.save
       redirect_to :action => :index, :notice => "Successfully updated list"

@@ -4,6 +4,6 @@ class Handover < ActiveRecord::Base
   belongs_to :grade
 
   validates_presence_of :to_do_item_id, :grade_id
-  
+
   attr_accessible :to_do_item_id, :grade_id
 end

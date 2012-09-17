@@ -5,7 +5,7 @@ class TeamMembershipsController < ApplicationController
       :team => Team.find(params[:team_id])
     )
   end
-  
+
   def create
     team_membership.save!
     redirect_to teams_path, :notice => "You have joined '#{team_membership.team.name}'"
