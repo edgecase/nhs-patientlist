@@ -9,3 +9,5 @@ Patient List is a open source application that allows doctors to easily hand pat
 Patient List is in the process of being developed into an application that NHS trusts can easily download and install.
 
 For more information about the system, please see [our wiki](https://github.com/edgecase/nhs-patientlist/wiki/Patient-List-Wiki).
+
+[![Build Status](https://secure.travis-ci.org/edgecase/nhs-patientlist.png)](http://travis-ci.org/edgecase/nhs-patientlist)
