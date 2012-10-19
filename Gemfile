@@ -47,3 +47,7 @@ group :development, :test do
   gem 'pry-rails',         '~> 0.1.6'
   gem 'shoulda-matchers',  '~> 1.3.0'
 end
+
+group :production do
+  gem 'unicorn'
+end
