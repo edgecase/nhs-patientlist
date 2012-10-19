@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~>3.2.8'
 
-gem 'mysql'
+gem 'mysql2'
 
 gem 'decent_exposure',      '~> 1.0.2'
 gem "simple_form",          "2.0.1"
