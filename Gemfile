@@ -26,7 +26,10 @@ end
 
 
 # Deploy with Capistrano
-gem 'capistrano'
+group :development do
+  gem 'capistrano', '2.8.0'
+  gem 'capistrano-ext', '1.2.1'
+end
 
 group :development, :test do
   gem "ecrails_templates", :git => "https://github.com/edgecase/ecrails_templates.git"
